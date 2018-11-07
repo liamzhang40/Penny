@@ -35,6 +35,7 @@
     "webpack": "^4.25.1"
   },
   "devDependencies": {
+    "redux-logger": "^3.0.6",
     "webpack-bundle-tracker": "^0.4.2-beta",
     "webpack-cli": "^3.1.2"
   }

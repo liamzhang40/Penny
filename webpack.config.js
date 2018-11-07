@@ -6,8 +6,8 @@ module.exports = {
     context: __dirname,
     entry: "./frontend/app",
     output: {
-        path: path.resolve(__dirname, 'static', 'bundles'),
-        publicPath: '/static/bundles/',
+        path: path.resolve(__dirname, "assets", "bundles"),
+        publicPath: "static/assets/bundles/",
         filename: "bundle.js"
     },
     plugins: [

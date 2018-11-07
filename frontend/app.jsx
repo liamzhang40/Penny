@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Root from './components/root';
+import configureStore from './store/store';
 
-function Welcome(props) {
-    return <h1>Hello, {props.name}</h1>;
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const root = document.getElementById("root");
+    const store = configureStore();
 
-const element = <Welcome name="world" />;
-ReactDOM.render(
-    element,
-    document.getElementById('root')
-);
+    ReactDOM.render(<Root store={store} />, root);
+});
