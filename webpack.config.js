@@ -7,7 +7,7 @@ module.exports = {
     entry: "./frontend/app",
     output: {
         path: path.resolve(__dirname, 'static', 'bundles'),
-        publicPath: '/static/',
+        publicPath: '/static/bundles/',
         filename: "bundle.js"
     },
     plugins: [

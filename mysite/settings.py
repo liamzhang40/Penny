@@ -141,7 +141,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "..", "www", "static")
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static/bundles/"),
+    os.path.join(BASE_DIR, "static/"),
 )
 # webpack 
 
