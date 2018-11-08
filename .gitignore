@@ -9,3 +9,9 @@ db.sqlite3
 node_modules
 bundle.js
 bundle.js.map
+bundle.css
+bundle.css.map
+styles.bundle.css
+styles.bundle.css.map
+styles.bundle.js
+styles.bundle.js.map
