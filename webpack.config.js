@@ -1,6 +1,7 @@
-var path = require("path");
-var webpack = require("webpack");
-var BundleTracker = require('webpack-bundle-tracker');
+const path = require("path");
+const BundleTracker = require('webpack-bundle-tracker');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 
 module.exports = {
     context: __dirname,
@@ -8,14 +9,29 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "static", "bundles"),
         // On elastic beanstalk
-        // publicPath: "static/static/bundles/",
+        // publicPath: "static/bundles/",
         // will use enviroment variable to add conditional
         publicPath: "static/static/bundles/",
         filename: "bundle.js"
     },
+    // optimization: {
+    //     splitChunks: {
+    //         cacheGroups: {
+    //             styles: {
+    //                 name: 'styles',
+    //                 test: /\.scss$/,
+    //                 chunks: 'all',
+    //                 enforce: true
+    //             }
+    //         }
+    //     }
+    // },
     plugins: [
         new BundleTracker({
             filename: './webpack-stats.json'
+        }),
+        new MiniCssExtractPlugin({
+            filename: "bundle.css"
         }),
     ],
     module: {
@@ -28,6 +44,13 @@ module.exports = {
                     presets: ["env", "react"]
                 }
             }]
+        }, {
+            test: /\.scss$/,
+            use: [
+                MiniCssExtractPlugin.loader,
+                'css-loader',
+                'sass-loader',
+            ],
         }]
     },
     devtool: "source-map",
