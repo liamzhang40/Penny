@@ -6,8 +6,11 @@ module.exports = {
     context: __dirname,
     entry: "./frontend/app",
     output: {
-        path: path.resolve(__dirname, "assets", "bundles"),
-        publicPath: "static/assets/bundles/",
+        path: path.resolve(__dirname, "static", "bundles"),
+        // On elastic beanstalk
+        // publicPath: "static/static/bundles/",
+        // will use enviroment variable to add conditional
+        publicPath: "static/static/bundles/",
         filename: "bundle.js"
     },
     plugins: [
