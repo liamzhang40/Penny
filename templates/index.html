@@ -1,0 +1,17 @@
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Penny</title>
+    {% render_bundle 'main' 'css'%}
+    {% render_bundle 'main' 'js'%}
+</head>
+
+<body>
+    <div id="root">
+    </div>
+</body>
+
+</html>

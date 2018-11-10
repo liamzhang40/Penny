@@ -1,0 +1,47 @@
+{
+  "name": "penny",
+  "version": "1.0.0",
+  "description": "packages needed for the coolest project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js --progress --colors --mode=development",
+    "watch": "webpack --config webpack.config.js --watch --mode=development",
+    "postinstall": "build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liamzhang40/Penny.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liamzhang40/Penny/issues"
+  },
+  "homepage": "https://github.com/liamzhang40/Penny#readme",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "jquery": "^3.3.1",
+    "lodash": "^4.17.11",
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1",
+    "react-redux": "^5.1.0",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "webpack": "^4.25.1"
+  },
+  "devDependencies": {
+    "css-loader": "^1.0.1",
+    "mini-css-extract-plugin": "^0.4.4",
+    "node-sass": "^4.10.0",
+    "redux-logger": "^3.0.6",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack-bundle-tracker": "^0.4.2-beta",
+    "webpack-cli": "^3.1.2"
+  }
+}
