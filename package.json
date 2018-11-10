@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js --progress --colors --mode=development",
     "watch": "webpack --config webpack.config.js --watch --mode=development",
-    "postinstall": "build"
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
