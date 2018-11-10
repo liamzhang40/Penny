@@ -154,3 +154,4 @@ AUTH_USER_MODEL = 'users.CustomUser'
 SITE_ID=1
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
