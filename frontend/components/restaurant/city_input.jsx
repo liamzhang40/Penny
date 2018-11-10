@@ -11,6 +11,7 @@ const mapDispatchToProps = dispatch => {
 
 const Button = styled.button`
     background-color: #bd1f1f;
+    border: 1px solid #ccc;
 `;
 
 class CityInput extends React.Component {
