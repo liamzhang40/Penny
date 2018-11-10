@@ -34,9 +34,11 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig',
     'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -91,15 +93,11 @@ if 'RDS_HOSTNAME' in os.environ:
     }
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'penny',
-            'USER': 'root',
-            'PASSWORD': 'db123456',
-            'HOST': '127.0.0.1',
-            'PORT': '3306',
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
 
 
 # Password validation
@@ -152,3 +150,8 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
     }
 }
+AUTH_USER_MODEL = 'users.CustomUser'
+SITE_ID=1
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
