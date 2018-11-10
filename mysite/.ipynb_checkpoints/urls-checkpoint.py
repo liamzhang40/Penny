@@ -24,7 +24,7 @@ path('admin/', admin.site.urls),
 # path('', include('polls.urls')),
 path('users/', include('users.urls')), # new
 path('users/', include('django.contrib.auth.urls')), # new
-path('', TemplateView.as_view(template_name='home.html'),
-name='home'),
+path('', TemplateView.as_view(template_name='index.html'),
+name='index'),
 ] 
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
