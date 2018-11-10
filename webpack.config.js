@@ -14,18 +14,6 @@ module.exports = {
         publicPath: "static/static/bundles/",
         filename: "bundle.js"
     },
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                styles: {
-                    name: 'styles',
-                    test: /\.scss$/,
-                    chunks: 'all',
-                    enforce: true
-                }
-            }
-        }
-    },
     plugins: [
         new BundleTracker({
             filename: './webpack-stats.json'
