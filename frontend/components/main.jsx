@@ -1,13 +1,10 @@
 import React from 'react';
-import CityInput from './restaurant/city_input';
-import RestaurantIndexContainer from './restaurant/restaurant_index_container';
+import RestaurantSearchPage from './restaurant/restaurant_search_page';
 
 const Main = () => {
-
     return (
-        <div className="background">
-            <CityInput />
-            <RestaurantIndexContainer />
+        <div>
+            <RestaurantSearchPage />
         </div>
     );
 };
