@@ -9,12 +9,28 @@ const Span = styled.span`
     font-weight: 700;
 `;
 
+const LabelRight = styled(Label)`
+    border-radius: 0;
+
+    &:before {
+        content: "";
+        position: absolute
+        width: 1px;
+        height: 10px;
+        background-color: #ccc;
+    }
+`;
+
+const Input = styled.input`
+    width: 250px;
+`;
+
 const SearchButton = styled(Button)`
     padding: 6px 12px;
     border-radius: 0 4px 4px 0;
 `;
 
-const RestaurantTopNavBar = styled.div`
+const RestaurantTopNavBar = styled.nav`
     min-width: 1020px;
     height: 64px;
     background-color: #d32323;
@@ -41,6 +57,7 @@ class CityInput extends React.Component {
         super();
         
         this.state = {
+            business: "",
             city: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -61,14 +78,20 @@ class CityInput extends React.Component {
         return (
             <RestaurantTopNavBar>
                 <RestaurantTopNavBarForm onSubmit={this.handleSubmit}>
-                    <Label className="city-search-label">
-                        <Span>Find Restaurants Near</Span>
-                        <input
-                            className="city-search"
+                    <Label>
+                        <Span>Find</Span>
+                        <Input
                             type="text"
-                            placeholder="city name"
-                            onChange={this.update("city")} />
+                            placeholder="chinese, lunch, ramen"
+                            onChange={this.update("business")} />
                     </Label>
+                    <LabelRight>
+                        <Span>Near</Span>
+                        <Input
+                            type="text"
+                            placeholder="city"
+                            onChange={this.update("city")} />
+                    </LabelRight>
                     <SearchButton>
                         <svg viewBox="0 0 24 24" width="20px">
                             <path d="M20.753 19.34l-4.295-4.297A7.46 7.46 0 0 0 18 10.5a7.5 7.5 0 1 0-7.5 7.5 7.46 7.46 0 0 0 4.543-1.542l4.296 4.295a1 1 0 1 0 1.412-1.414zM10.5 16A5.506 5.506 0 0 1 5 10.5C5 7.467 7.467 5 10.5 5S16 7.467 16 10.5 13.533 16 10.5 16z"/>
