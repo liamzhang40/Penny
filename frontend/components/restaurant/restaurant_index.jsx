@@ -3,12 +3,17 @@ import styled from 'styled-components';
 import RestaurantIndexItem from './restaurant_index_item';
 import RestaurantFilterOptions from './restaurant_filter_options';
 
-const RestaruantBodyContainer = styled.div`
+const RestaurantBodyBackground = styled.div`
     min-width: 1020px;
 `;
 
-const RestaruantBody = styled.div`
-    min-width: 1000px;
+const RestaurantBodyContainer = styled.div`
+    max-width: 960px;
+    margin: auto;
+`;
+
+const RestaurantList = styled.div`
+    width: 630px;
 `;
 
 class RestaurantIndex extends React.Component {
@@ -57,23 +62,26 @@ class RestaurantIndex extends React.Component {
         ));
 
         return (
-            <RestaruantBodyContainer>
-                <RestaruantBody>
-                    <RestaurantFilterOptions />
+            <RestaurantBodyBackground>
+                <RestaurantBodyContainer>
+                    <RestaurantList>
+                        <RestaurantFilterOptions />
 
-                    <ul className="restaurant-index">
-                        {list}
-                    </ul>
-                    { restaurants &&
-                        <div className="page-bottom">
-                            <span>Pages:</span>
-                            <ul className="page-numbers">
-                                {page}
-                            </ul>
-                        </div>
-                    }
-                </RestaruantBody>
-            </RestaruantBodyContainer>
+                        <ul className="restaurant-index">
+                            {list}
+                        </ul>
+                        { restaurants &&
+                            <div className="page-bottom">
+                                <span>Pages:</span>
+                                <ul className="page-numbers">
+                                    {page}
+                                </ul>
+                            </div>
+                        }
+                    </RestaurantList>
+
+                </RestaurantBodyContainer>
+            </RestaurantBodyBackground>
         );
     }
 }

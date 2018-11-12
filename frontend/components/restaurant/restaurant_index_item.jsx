@@ -1,8 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const RestaurantListItem = styled.li`
+    height: 260px;
+    padding: 18px 0;
+    border-bottom: 1px solid #e6e6e6;
+`;
 
 const RestaurantIndexItem = ({ restaurant }) => {
     return (
-        <li className="restaurant-index-item">
+        <RestaurantListItem>
             <div>
                 <div className="img-container">
                     <img src={restaurant.image_url}/>
@@ -13,7 +20,7 @@ const RestaurantIndexItem = ({ restaurant }) => {
                     <span>rating: {restaurant.rating}</span>
                 </div>
             </div>
-        </li>
+        </RestaurantListItem>
     );
 };
 

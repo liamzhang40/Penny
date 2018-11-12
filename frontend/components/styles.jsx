@@ -15,3 +15,7 @@ export const Label = styled.label`
     padding: 8px 12px;
     border-radius: 4px 0 0 4px;
 `;
+
+export const Img = styled.img`
+
+`;
