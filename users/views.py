@@ -11,7 +11,6 @@ class SignUpView(CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('index')
     template_name = 'signup.html'
-# Create your views here.
 
 class UsersAPIView(generics.ListAPIView):
     queryset = CustomUser.objects.all()

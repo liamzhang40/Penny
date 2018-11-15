@@ -15,7 +15,7 @@ export const DjangoFetchRestaurants = (city, offset) => (
     $.ajax({
         method: "GET",
         dataType: "json",
-        url: "api/users/v1"
+        url: "api/restaurants/v1"
     })
 );
 
