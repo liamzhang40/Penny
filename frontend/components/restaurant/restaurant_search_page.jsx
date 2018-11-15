@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import CityInput from './city_input';
-import RestaurantIndexContainer from './restaurant_index_container';
+import RestaurantSearchPageNav from './restaurant_search_page_nav';
+import RestaurantSearchPageBody from './restaurant_search_page_body';
 
-const RestaurantSearchPageGrid = styled.div`
+const RestaurantSearchPageContainer = styled.div`
     display: flex;
     flex-direction: column;
 `;
 
 const RestaurantSearchPage = () => {
     return (
-        <RestaurantSearchPageGrid>
-            <CityInput />
-            <RestaurantIndexContainer />
-        </RestaurantSearchPageGrid>
+        <RestaurantSearchPageContainer>
+            <RestaurantSearchPageNav />
+            <RestaurantSearchPageBody />
+        </RestaurantSearchPageContainer>
     );
 };
 

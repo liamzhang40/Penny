@@ -1,20 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
 import RestaurantIndexItem from './restaurant_index_item';
-import RestaurantFilterOptions from './restaurant_filter_options';
-
-const RestaurantBodyBackground = styled.div`
-    min-width: 1020px;
-`;
-
-const RestaurantBodyContainer = styled.div`
-    max-width: 960px;
-    margin: auto;
-`;
-
-const RestaurantList = styled.div`
-    width: 630px;
-`;
 
 class RestaurantIndex extends React.Component {
     constructor() {
@@ -62,26 +47,17 @@ class RestaurantIndex extends React.Component {
         ));
 
         return (
-            <RestaurantBodyBackground>
-                <RestaurantBodyContainer>
-                    <RestaurantList>
-                        <RestaurantFilterOptions />
-
-                        <ul className="restaurant-index">
-                            {list}
-                        </ul>
-                        { restaurants &&
-                            <div className="page-bottom">
-                                <span>Pages:</span>
-                                <ul className="page-numbers">
-                                    {page}
-                                </ul>
-                            </div>
-                        }
-                    </RestaurantList>
-
-                </RestaurantBodyContainer>
-            </RestaurantBodyBackground>
+            <ul className="restaurant-index">
+                {list}
+            </ul>
+            // {/* { restaurants &&
+            //     <div className="page-bottom">
+            //         <span>Pages:</span>
+            //         <ul className="page-numbers">
+            //             {page}
+            //         </ul>
+            //     </div>
+            // } */}
         );
     }
 }

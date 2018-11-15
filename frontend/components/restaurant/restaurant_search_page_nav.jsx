@@ -54,7 +54,7 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-class CityInput extends React.Component {
+class RestaurantSearchPageNav extends React.Component {
     constructor() {
         super();
         
@@ -105,4 +105,4 @@ class CityInput extends React.Component {
     }
 }
 
-export default connect(null, mapDispatchToProps)(CityInput);
+export default connect(null, mapDispatchToProps)(RestaurantSearchPageNav);
