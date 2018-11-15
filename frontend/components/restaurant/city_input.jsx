@@ -11,12 +11,14 @@ const Span = styled.span`
 
 const LabelRight = styled(Label)`
     border-radius: 0;
+    position: relative;
 
     &:before {
         content: "";
-        position: absolute
+        position: absolute;
+        left: 0;
         width: 1px;
-        height: 10px;
+        height: 18px;
         background-color: #ccc;
     }
 `;
