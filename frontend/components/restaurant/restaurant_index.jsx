@@ -1,6 +1,5 @@
 import React from 'react';
 import RestaurantIndexItem from './restaurant_index_item';
-import RestaurantFilterOptions from './restaurant_filter_options';
 
 class RestaurantIndex extends React.Component {
     constructor() {
@@ -48,21 +47,17 @@ class RestaurantIndex extends React.Component {
         ));
 
         return (
-            <div className="restaurant-container">
-                <RestaurantFilterOptions />
-
-                <ul className="restaurant-index">
-                    {list}
-                </ul>
-                { restaurants &&
-                    <div className="page-bottom">
-                        <span>Pages:</span>
-                        <ul className="page-numbers">
-                            {page}
-                        </ul>
-                    </div>
-                }
-            </div>
+            <ul className="restaurant-index">
+                {list}
+            </ul>
+            // {/* { restaurants &&
+            //     <div className="page-bottom">
+            //         <span>Pages:</span>
+            //         <ul className="page-numbers">
+            //             {page}
+            //         </ul>
+            //     </div>
+            // } */}
         );
     }
 }

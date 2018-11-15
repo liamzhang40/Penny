@@ -11,4 +11,12 @@ export const fetchRestaurants = (city, offset) => (
     })
 );
 
+export const DjangoFetchRestaurants = (city, offset) => (
+    $.ajax({
+        method: "GET",
+        dataType: "json",
+        url: "api/users/v1"
+    })
+);
+
 // will only send info to backend in future, and backend will send API request
