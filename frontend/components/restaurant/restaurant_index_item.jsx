@@ -23,25 +23,54 @@ const ImgContainer = styled.div`
 const RestaurantContactContainer = styled.div`
     width: 400px;
     display: flex;
-    justify-content: space-between;
 `;
 
 const RestaurantContactLeft = styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;
+    width: 62.5%;
 `;
 
 const RestaurantContactRight = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    width: 37.5%;
+`;
+
+const RestaurantContactSpan = styled.span`
+    font-size: 14px;
+    margin-bottom: 5px;
+`;
+
+const RestaurantContactSpanRate = styled(RestaurantContactSpan)`
+    color: #666;
+`;
+
+const RestaurantName = styled.a`
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: #0073bb;
+    
+    &:hover {
+        text-decoration: underline;
+    }
 `;
 
 const RestaurantDescription = styled.p`
+
 `;
 
 const RestaurantIndexItem = ({ restaurant }) => {
+    const restaurantCategories = restaurant.categories.map((category,idx) => (
+        <RestaurantContactSpan key={idx}>
+            {idx === restaurant.categories.length - 1 ?
+            category.title : 
+            `${category.title}, `}
+        </RestaurantContactSpan>
+    ));
+
     return (
         <RestaurantListItem>
             <div>
@@ -52,14 +81,17 @@ const RestaurantIndexItem = ({ restaurant }) => {
             <div>
                 <RestaurantContactContainer>
                     <RestaurantContactLeft>
-                        <a href={restaurant.url} target="_blank">{restaurant.name}</a>
-                        <span>price: {restaurant.price}</span>
-                        <span>rating: {restaurant.rating}</span>
+                        <RestaurantName href={restaurant.url} target="_blank">{restaurant.name}</RestaurantName>
+                        <RestaurantContactSpanRate>rating: {restaurant.rating}</RestaurantContactSpanRate>
+                        <div>
+                            <RestaurantContactSpan>{restaurant.price}</RestaurantContactSpan>
+                            {restaurantCategories}
+                        </div>
                     </RestaurantContactLeft>
                     <RestaurantContactRight>
-                        <span>{restaurant.display_phone}</span>                    
-                        <span>{restaurant.location.display_address[0]}</span>
-                        <span>{restaurant.location.display_address[1]}</span>
+                        <RestaurantContactSpan>{restaurant.display_phone}</RestaurantContactSpan>                    
+                        <RestaurantContactSpan>{restaurant.location.display_address[0]}</RestaurantContactSpan>
+                        <RestaurantContactSpan>{restaurant.location.display_address[1]}</RestaurantContactSpan>
                     </RestaurantContactRight>
                 </RestaurantContactContainer>
                 <RestaurantDescription>
