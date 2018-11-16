@@ -4,7 +4,10 @@ import {
 
 const restaurantFilterOptionReducer = (state = {
     orderBy: "",
-    order: ""
+    order: "",
+    price: "",
+    openNow: "",
+    transactions: []
 }, action) => {
     Object.freeze(state);
 

@@ -4,7 +4,7 @@ import { toggleRestaurantFilter } from '../../actions/restaurant_actions';
 
 const mapStateToProps = state => {
     return {
-        restaurantFilterOptions: state.ui.restaurantFilterOptions
+        price: state.ui.restaurantFilterOptions.price
     };
 };
 
@@ -14,38 +14,36 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-const SortOptions = ({ restaurantFilterOptions, toggleRestaurantFilter}) => {
-    const handleChange = (orderBy, order) => (
+const RestaurantFilterOptions = ({ price, toggleRestaurantFilter }) => {
+    const handleClick = (field) => (
         e => {
-            toggleRestaurantFilter(Object.assign(
-                {},
-                restaurantFilterOptions,
-                {orderBy, order}
-            ));
+            const selectedPrice = e.target.textContent;
+            if (price === selectedPrice) {
+                toggleRestaurantFilter({ [field]: "" });
+            } else {
+                toggleRestaurantFilter({ [field]: selectedPrice});
+            }
         }
     );
 
-    const radio = ["price", "rating"].map((orderBy, idx) => (
-        <li key={idx}>
-            <span className="sort-titles">
-                {`sort by ${orderBy}:`}
-            </span>
-            {["low to high", "high to low"].map((order, idx2) => (
-                <label key={idx2}>{order}
-                    <input
-                        value={order}
-                        onChange={handleChange(orderBy, order)}
-                        type="radio"
-                        name="sort" />
-                </label>
-            ))}
-        </li>
+    const prices = ["$", "$$", "$$$", "$$$$"].map((dollar, idx) => (
+        <li 
+            key={idx}
+            onClick={handleClick("price")}>{dollar}</li>
     ));
+    
     return (
-        <ul className="sort-options">
-            {radio}
+        <ul>
+            <li>
+                <ul>
+                    {prices}
+                </ul>
+            </li>
+
+
         </ul>
+
     );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SortOptions);
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantFilterOptions);

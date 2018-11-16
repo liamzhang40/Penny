@@ -3,8 +3,10 @@ import { fetchRestaurants } from '../../actions/restaurant_actions';
 import RestaurantIndex from './restaurant_index';
 
 const mapStateToProps = state => {
-    const { orderBy, order } = state.ui.restaurantFilterOptions;
-    const restaurants = state.entities.restaurants.slice();
+    const { orderBy, order, price } = state.ui.restaurantFilterOptions;
+    const restaurants = state.entities.restaurants.filter(restaurant => (
+        !price || price === restaurant.price
+    ));
     // will filter the array first when more filter options are added
     if (order === "low to high") {
         restaurants.sort((a, b) => {
