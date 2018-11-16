@@ -1,6 +1,28 @@
 import React from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { FilterButton } from '../styles';
 import { toggleRestaurantFilter } from '../../actions/restaurant_actions';
+
+const FilterButtonList = styled.ul`
+    display: flex;
+`;
+
+const FilterButtonPrice = styled(FilterButton)`
+    border-radius: 0;
+
+    &:first-child {
+        border-radius: 4px 0 0 4px;
+    }
+
+    &:last-child {
+        border-radius: 0 4px 4px 0;
+    }
+
+    &:not(:first-child) {
+        margin-left: -1px;
+    }
+`;
 
 const mapStateToProps = state => {
     return {
@@ -16,7 +38,7 @@ const mapDispatchToProps = dispatch => {
 
 const RestaurantFilterOptions = ({ restaurantFilterOptions, toggleRestaurantFilter }) => {
     const priceOptions = ["$", "$$", "$$$", "$$$$"].map((price, idx) => (
-        <li 
+        <FilterButtonPrice 
             key={ idx }
             onClick={ () => {
                 if (restaurantFilterOptions.price === price) {
@@ -24,35 +46,28 @@ const RestaurantFilterOptions = ({ restaurantFilterOptions, toggleRestaurantFilt
                 } else {
                     toggleRestaurantFilter({ price });
                 }
-            } }>{ price }</li>
+            }}><span>{ price }</span></FilterButtonPrice>
     ));
 
-    // const otherOptionsObj = {
-    //     "Open Now": "is_closed",
-    //     "Make a Reservation": "restaurant_reservation",
-    //     "Order Takeout": "pickup",
-    //     "Order Delivery": "delivery"
-    // };
-    
-    const otherOptions = ["Open Now", "Make a Reservation", "Order Takeout", "Order Delivery"].map((option, idx) => (
-        <li
+    const otherOptions = ["Open Now", "Order Delivery", "Order Takeout", "Make a Reservation"].map((option, idx) => (
+        <FilterButton marginOn
             key={ idx }
             onClick={ () => {
                 toggleRestaurantFilter({
                     [option]: !restaurantFilterOptions[option]
                 });
-            } }>{ option }</li>
+            }}><span>{ option }</span></FilterButton>
     ));
     
     return (
-        <ul>
+        <FilterButtonList>
             <li>
-                <ul>
+                <FilterButtonList>
                     { priceOptions }
-                </ul>
+                </FilterButtonList>
             </li>
             { otherOptions }
-        </ul>
+        </FilterButtonList>
 
     );
 };
