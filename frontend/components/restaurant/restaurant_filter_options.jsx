@@ -38,7 +38,8 @@ const mapDispatchToProps = dispatch => {
 
 const RestaurantFilterOptions = ({ restaurantFilterOptions, toggleRestaurantFilter }) => {
     const priceOptions = ["$", "$$", "$$$", "$$$$"].map((price, idx) => (
-        <FilterButtonPrice 
+        <FilterButtonPrice
+            selected={ restaurantFilterOptions.price === price }
             key={ idx }
             onClick={ () => {
                 if (restaurantFilterOptions.price === price) {
@@ -50,7 +51,9 @@ const RestaurantFilterOptions = ({ restaurantFilterOptions, toggleRestaurantFilt
     ));
 
     const otherOptions = ["Open Now", "Order Delivery", "Order Takeout", "Make a Reservation"].map((option, idx) => (
-        <FilterButton marginOn
+        <FilterButton 
+            marginOn
+            selected={ restaurantFilterOptions[option] }
             key={ idx }
             onClick={ () => {
                 toggleRestaurantFilter({
