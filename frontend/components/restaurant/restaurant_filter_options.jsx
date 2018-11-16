@@ -4,7 +4,7 @@ import { toggleRestaurantFilter } from '../../actions/restaurant_actions';
 
 const mapStateToProps = state => {
     return {
-        price: state.ui.restaurantFilterOptions.price
+        restaurantFilterOptions: state.ui.restaurantFilterOptions
     };
 };
 
@@ -14,33 +14,44 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-const RestaurantFilterOptions = ({ price, toggleRestaurantFilter }) => {
-    const handleClick = (field) => (
-        e => {
-            const selectedPrice = e.target.textContent;
-            if (price === selectedPrice) {
-                toggleRestaurantFilter({ [field]: "" });
-            } else {
-                toggleRestaurantFilter({ [field]: selectedPrice});
-            }
-        }
-    );
-
-    const prices = ["$", "$$", "$$$", "$$$$"].map((dollar, idx) => (
+const RestaurantFilterOptions = ({ restaurantFilterOptions, toggleRestaurantFilter }) => {
+    const priceOptions = ["$", "$$", "$$$", "$$$$"].map((price, idx) => (
         <li 
-            key={idx}
-            onClick={handleClick("price")}>{dollar}</li>
+            key={ idx }
+            onClick={ () => {
+                if (restaurantFilterOptions.price === price) {
+                    toggleRestaurantFilter({ price: "" });
+                } else {
+                    toggleRestaurantFilter({ price });
+                }
+            } }>{ price }</li>
+    ));
+
+    // const otherOptionsObj = {
+    //     "Open Now": "is_closed",
+    //     "Make a Reservation": "restaurant_reservation",
+    //     "Order Takeout": "pickup",
+    //     "Order Delivery": "delivery"
+    // };
+    
+    const otherOptions = ["Open Now", "Make a Reservation", "Order Takeout", "Order Delivery"].map((option, idx) => (
+        <li
+            key={ idx }
+            onClick={ () => {
+                toggleRestaurantFilter({
+                    [option]: !restaurantFilterOptions[option]
+                });
+            } }>{ option }</li>
     ));
     
     return (
         <ul>
             <li>
                 <ul>
-                    {prices}
+                    { priceOptions }
                 </ul>
             </li>
-
-
+            { otherOptions }
         </ul>
 
     );

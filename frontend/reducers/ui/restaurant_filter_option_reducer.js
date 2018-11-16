@@ -6,9 +6,12 @@ const restaurantFilterOptionReducer = (state = {
     orderBy: "",
     order: "",
     price: "",
-    openNow: "",
-    transactions: []
+    "Open Now": false,
+    "Make a Reservation": false,
+    "Order Takeout": false,
+    "Order Delivery": false
 }, action) => {
+    // the state should be stored in session storage so it persists upon page refreshing
     Object.freeze(state);
 
     switch (action.type) {
