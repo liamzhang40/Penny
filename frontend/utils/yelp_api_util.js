@@ -11,11 +11,15 @@ export const fetchRestaurants = (city, offset) => (
     })
 );
 
-export const DjangoFetchRestaurants = (city, offset) => (
+export const DjangoFetchRestaurants = (location, term) => (
     $.ajax({
+        data: {
+            location,
+            term,
+        },
         method: "GET",
         dataType: "json",
-        url: "api/restaurants/v1"
+        url: "search/api/v1"
     })
 );
 

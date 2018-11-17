@@ -100,9 +100,11 @@ class SearchDetail(generics.RetrieveUpdateDestroyAPIView):
 	queryset = BusinessSearch.objects.all()
 	serializer_class = SearchSerializer
 
-class BusinessAPIView(requests):
-	location = requests.get('city')
-	term = requests.get('term')
 
-	def biz_search(self):
-		return search(settings.YELP_API_KEY, self.term, self.location)
+class BusinessAPIView():
+	print("HELLO WORLD")
+	#location = HttpResponse.GET.get('location')
+	#term = HttpResponse.GET.get('term')
+
+	#def biz_search(self):
+	#	return search(settings.YELP_API_KEY, self.term, self.location)

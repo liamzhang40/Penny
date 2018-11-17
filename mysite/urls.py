@@ -23,7 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('users.urls')),
     path('', include('django.contrib.auth.urls')),
-    # path('', include('restaurants.urls')),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
 	path('search/', include('biz.urls')),
 ] 

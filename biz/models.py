@@ -34,6 +34,7 @@ class BusinessSearch(models.Model):
 	def __str__(self):
 		return self.term
 
+
 class DecimalEncoder(json.JSONEncoder):
 	def default(self, obj):
 		if isInstance(obj, decimal.Decimal):
