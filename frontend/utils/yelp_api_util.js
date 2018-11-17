@@ -19,7 +19,7 @@ export const DjangoFetchRestaurants = (location, term) => (
         },
         method: "GET",
         dataType: "json",
-        url: "search/api/v1"
+        url: "search/api/v1/"
     })
 );
 

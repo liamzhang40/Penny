@@ -101,7 +101,7 @@ class SearchDetail(generics.RetrieveUpdateDestroyAPIView):
 	serializer_class = SearchSerializer
 
 
-class BusinessAPIView():
+class BusinessAPIView(request):
 	print("HELLO WORLD")
 	#location = HttpResponse.GET.get('location')
 	#term = HttpResponse.GET.get('term')

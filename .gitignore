@@ -11,6 +11,7 @@ bundle.js
 bundle.js.map
 bundle.css
 bundle.css.map
+webpack.config.js
 
 .DS_Store
 README.md
