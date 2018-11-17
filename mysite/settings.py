@@ -43,8 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webpack_loader',
+
+	# 3rd-party apps
     'rest_framework',
+
+	# Local apps 
+	'biz',
 ]
+
+AUTH_USER_MODEL = 'accounts.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -161,3 +168,14 @@ SITE_ID=1
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+###### YELP API STUFF ######
+
+# we should create a secret file to store the keys below:
+YELP_API_KEY = '7OX6LrWvrtVu_1c95vKoG_AJyJ6UoSl-x0oUF3-mp1EyARIlN-o_GFcHXHyEadQUAJB3OEJXx21iZpTyBe-B-8FRhL2qukLaVkaUT8nxsACSf6KrVdVj0BF5ftPsW3Yx'
+
+# API constants, you shouldn't have to change these.
+API_HOST = 'https://api.yelp.com'
+SEARCH_PATH = '/v3/businesses/search'
+BUSINESS_PATH = '/v3/businesses/'  # Business ID will come after slash.
