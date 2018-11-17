@@ -1,8 +1,8 @@
 from django.urls import path, re_path
-from .views import SearchList, SearchDetail, BusinessAPIView
+from .views import SearchList, SearchDetail, detail
 
 urlpatterns = [
 	path('api/v1/', SearchList.as_view()),
 	path('api/v1/<int:pk>/', SearchDetail.as_view()),
-	path('api/yelp/v1/', BusinessAPIView),
+	path('api/yelp/v1/', detail),
 ]

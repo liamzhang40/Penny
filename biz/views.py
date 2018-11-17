@@ -13,7 +13,8 @@ import pprint
 import requests
 import sys
 import urllib
-
+import datetime 
+import pdb
 
 # This client code can run on Python 2.x or 3.x.  Your imports can be
 # simpler if you only need one of those.
@@ -69,9 +70,17 @@ def biz_request(host, path, api_key, url_params=None):
 
     print(u'Querying {0} ...'.format(url))
 
+    print(datetime.datetime.now())
+
     response = requests.request('GET', url, headers=headers, params=url_params)
 
-    return response.json()
+    print(datetime.datetime.now())
+    # pdb.set_trace()
+    return HttpResponse(
+        content=response.content,
+        status=response.status_code,
+        content_type=response.headers['Content-Type']
+    )
 
 
 def search(api_key, term, location):
@@ -101,10 +110,9 @@ class SearchDetail(generics.RetrieveUpdateDestroyAPIView):
 	serializer_class = SearchSerializer
 
 
-class BusinessAPIView(request):
-	print("HELLO WORLD")
-	#location = HttpResponse.GET.get('location')
-	#term = HttpResponse.GET.get('term')
+def detail(request):
+    location = request.GET.get('location')
+    term = request.GET.get('term')
+    
+    return search(settings.YELP_API_KEY, term, location)
 
-	#def biz_search(self):
-	#	return search(settings.YELP_API_KEY, self.term, self.location)
