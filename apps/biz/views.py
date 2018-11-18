@@ -29,24 +29,10 @@ except ImportError:
     from urllib import quote
     from urllib import urlencode
 
-
-# Yelp Fusion no longer uses OAuth as of December 7, 2017.
-# You no longer need to provide Client ID to fetch Data
-# It now uses private keys to authenticate requests (API Key)
-# You can find it on
-# https://www.yelp.com/developers/v3/manage_app
-API_KEY= None 
-
-
-# API constants, you shouldn't have to change these.
+# API constants
 API_HOST = 'https://api.yelp.com'
 SEARCH_PATH = '/v3/businesses/search'
 BUSINESS_PATH = '/v3/businesses/'  # Business ID will come after slash.
-
-
-# Defaults for our simple example.
-DEFAULT_TERM = 'dinner'
-DEFAULT_LOCATION = 'San Francisco, CA'
 
 class YelpAPISearch(APIView):
     def get(self, request):
@@ -57,18 +43,7 @@ class YelpAPISearch(APIView):
         return self.__biz_request_to_yelp()
 
     def __biz_request_to_yelp(self):
-        """Given your API_KEY, send a GET request to the API.
-        Args:
-            host (str): The domain host of the API.
-            path (str): The path of the API after the domain.
-            API_KEY (str): Your API Key.
-            url_params (dict): An optional set of query parameters in the request.
-        Returns:
-            dict: The JSON response from the request.
-        Raises:
-            HTTPError: An error occurs from the HTTP request.
-        """
-        url_params = {
+        url_params = { 
             'term': self.term.replace(' ', '+'),
             'location': self.location.replace(' ', '+'),
             'limit': self.limit
