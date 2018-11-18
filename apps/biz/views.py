@@ -49,55 +49,60 @@ DEFAULT_TERM = 'dinner'
 DEFAULT_LOCATION = 'San Francisco, CA'
 SEARCH_LIMIT = 3
 
+class YelpAPISearch(APIView):
+    def get(self, request):
+        location = request.GET.get('location')
+        term = request.GET.get('term')
+        
+        return self.__search(settings.YELP_API_KEY, term, location)
 
-def biz_request(host, path, api_key, url_params=None):
-    """Given your API_KEY, send a GET request to the API.
-    Args:
-        host (str): The domain host of the API.
-        path (str): The path of the API after the domain.
-        API_KEY (str): Your API Key.
-        url_params (dict): An optional set of query parameters in the request.
-    Returns:
-        dict: The JSON response from the request.
-    Raises:
-        HTTPError: An error occurs from the HTTP request.
-    """
-    url_params = url_params or {}
-    url = '{0}{1}'.format(host, quote(path.encode('utf8')))
-    headers = {
-        'Authorization': 'Bearer %s' % api_key,
-    }
+    def __biz_request(self, host, path, api_key, url_params=None):
+        """Given your API_KEY, send a GET request to the API.
+        Args:
+            host (str): The domain host of the API.
+            path (str): The path of the API after the domain.
+            API_KEY (str): Your API Key.
+            url_params (dict): An optional set of query parameters in the request.
+        Returns:
+            dict: The JSON response from the request.
+        Raises:
+            HTTPError: An error occurs from the HTTP request.
+        """
+        url_params = url_params or {}
+        url = '{0}{1}'.format(host, quote(path.encode('utf8')))
+        headers = {
+            'Authorization': 'Bearer %s' % api_key,
+        }
 
-    print(u'Querying {0} ...'.format(url))
+        print(u'Querying {0} ...'.format(url))
 
-    print(datetime.datetime.now())
+        print(datetime.datetime.now())
 
-    response = requests.request('GET', url, headers=headers, params=url_params)
+        response = requests.request('GET', url, headers=headers, params=url_params)
 
-    print(datetime.datetime.now())
-    # pdb.set_trace()
-    return HttpResponse(
-        content=response.content,
-        status=response.status_code,
-        content_type=response.headers['Content-Type']
-    )
+        print(datetime.datetime.now())
+        # pdb.set_trace()
+        return HttpResponse(
+            content=response.content,
+            status=response.status_code,
+            content_type=response.headers['Content-Type']
+        )
 
+    def __search(self, api_key, term, location):
+        """Query the Search API by a search term and location.
+        Args:
+            term (str): The search term passed to the API.
+            location (str): The search location passed to the API.
+        Returns:
+            dict: The JSON response from the request.
+        """
 
-def search(api_key, term, location):
-    """Query the Search API by a search term and location.
-    Args:
-        term (str): The search term passed to the API.
-        location (str): The search location passed to the API.
-    Returns:
-        dict: The JSON response from the request.
-    """
-
-    url_params = {
-        'term': term.replace(' ', '+'),
-        'location': location.replace(' ', '+'),
-        'limit': SEARCH_LIMIT
-    }
-    return biz_request(API_HOST, SEARCH_PATH, api_key, url_params=url_params)
+        url_params = {
+            'term': term.replace(' ', '+'),
+            'location': location.replace(' ', '+'),
+            'limit': SEARCH_LIMIT
+        }
+        return self.__biz_request(API_HOST, SEARCH_PATH, api_key, url_params=url_params)
 
 
 # Create your views here.
@@ -109,10 +114,4 @@ class SearchDetail(generics.RetrieveUpdateDestroyAPIView):
 	queryset = BusinessSearch.objects.all()
 	serializer_class = SearchSerializer
 
-
-def detail(request):
-    location = request.GET.get('location')
-    term = request.GET.get('term')
-    
-    return search(settings.YELP_API_KEY, term, location)
 
