@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from .forms import CustomUserCreationForm
+from django.contrib.auth import logout
 
 from rest_framework import generics
 from .models import CustomUser
@@ -18,12 +19,13 @@ class UsersAPIView(generics.ListAPIView):
    
 def login_success(request):
 	if request.user.is_superuser:
-		return redirect("/admin/")
+		logout(request)
+		return redirect("/login/")
 	else:
 		return redirect("/")
 
 def logout_success(request):
-	if request.user.is_superuser:
+	if ('HTTP_REFERER' in request.META and request.META['HTTP_REFERER'] == 'http://127.0.0.1:8000/admin/'):
 		return redirect("/admin/")
 	else:
 		return redirect("/login/")
