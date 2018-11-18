@@ -1,7 +1,7 @@
 from django.db  import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
-from mysite import settings 
+from penny_settings import settings 
 from django.views.generic import View 
 from django.http import HttpResponse 
 

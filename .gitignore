@@ -16,6 +16,7 @@ webpack.config.js
 .DS_Store
 README.md
 .vs/
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

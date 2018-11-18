@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from rest_framework import generics
 from rest_framework.views import APIView 
 from rest_framework.response import Response
-from mysite import settings 
+from penny_settings import settings
 from .models import BusinessSearch, DecimalEncoder
 from .serializers import SearchSerializer
 
