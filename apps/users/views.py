@@ -17,7 +17,7 @@ class UsersAPIView(generics.ListAPIView):
     serializer_class = CustomUserSerializer
    
 def login_success(request):
-	if request.user.is_superuser():
+	if request.user.is_superuser:
 		return redirect("/admin/")
 	else:
 		return redirect("/")
