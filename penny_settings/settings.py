@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+	'apps.users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -47,8 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
 	# Local apps 
-	'apps.biz',
-    'apps.users.apps.UsersConfig',
+	'apps.biz', 
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -165,8 +165,8 @@ REST_FRAMEWORK = {
 
 AUTH_USER_MODEL = 'users.CustomUser'
 SITE_ID=1
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
