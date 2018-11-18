@@ -70,5 +70,3 @@ class SearchList(generics.ListCreateAPIView):
 class SearchDetail(generics.RetrieveUpdateDestroyAPIView):
 	queryset = BusinessSearch.objects.all()
 	serializer_class = SearchSerializer
-
-

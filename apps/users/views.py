@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from .forms import CustomUserCreationForm
@@ -15,4 +15,9 @@ class SignUpView(CreateView):
 class UsersAPIView(generics.ListAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
-    
+   
+def login_success(request):
+	if request.user.is_superuser():
+		return redirect("/admin/")
+	else:
+		return redirect("/")
