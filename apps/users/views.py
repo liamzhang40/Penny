@@ -21,3 +21,9 @@ def login_success(request):
 		return redirect("/admin/")
 	else:
 		return redirect("/")
+
+def logout_success(request):
+	if request.user.is_superuser:
+		return redirect("/admin/")
+	else:
+		return redirect("/login/")

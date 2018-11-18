@@ -166,7 +166,7 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'users.CustomUser'
 SITE_ID=1
 LOGIN_REDIRECT_URL = 'login_success'
-LOGOUT_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'logout_success'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
