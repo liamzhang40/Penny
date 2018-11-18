@@ -50,7 +50,7 @@ const RestaurantTopNavBarForm = styled.form`
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchRestaurants: (city, offset) => dispatch(fetchRestaurants(city, offset))
+        fetchRestaurants: (location, offset) => dispatch(fetchRestaurants(location, offset))
     };
 };
 
@@ -59,8 +59,8 @@ class RestaurantSearchPageNav extends React.Component {
         super();
         
         this.state = {
-            business: "",
-            city: ""
+            term: "",
+            location: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -73,7 +73,7 @@ class RestaurantSearchPageNav extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.fetchRestaurants(this.state.city, 0);
+        this.props.fetchRestaurants(this.state.location, 0);
     }
 
     render() {
@@ -85,14 +85,14 @@ class RestaurantSearchPageNav extends React.Component {
                         <Input
                             type="text"
                             placeholder="chinese, lunch, ramen"
-                            onChange={this.update("business")} />
+                            onChange={this.update("term")} />
                     </Label>
                     <LabelRight>
                         <Span>Near</Span>
                         <Input
                             type="text"
-                            placeholder="city"
-                            onChange={this.update("city")} />
+                            placeholder="location"
+                            onChange={this.update("location")} />
                     </LabelRight>
                     <SearchButton>
                         <svg viewBox="0 0 24 24" width="20px">

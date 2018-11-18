@@ -16,9 +16,9 @@ export const toggleRestaurantFilter = (filterObj) => (
     }
 );
 
-export const fetchRestaurants = (city, offset) => {
+export const fetchRestaurants = (location, term) => {
   return dispatch => {
-      return yelpAPIUtils.fetchRestaurants(city, offset).then(
+      return yelpAPIUtils.DjangoFetchRestaurants(location, term).then(
           response => {
               return dispatch(receiveRestaurants(response.businesses));
           }
