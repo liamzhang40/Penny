@@ -11,9 +11,13 @@ bundle.js
 bundle.js.map
 bundle.css
 bundle.css.map
+webpack.config.js
+webpack-stats.json
 
 .DS_Store
 README.md
+.vs/
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

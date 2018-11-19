@@ -9,11 +9,15 @@ const RestaurantBodyBackground = styled.div`
 
 const RestaurantListContainer = styled.div`
     max-width: 960px;
-    margin: auto;
+    margin: 18px auto;
+`;
+
+const RestaurantFilterOptionsLayer = styled.div`
+    max-width: 960px;
+    margin: 0 auto;
 `;
 
 const RestaurantList = styled.div`
-    margin-top: 18px;
     width: 630px;
 `;
 
@@ -27,7 +31,9 @@ const RestaurantSearchPageBody = () => {
     return (
         <RestaurantBodyBackground>
             <RestaurantFilterOptionsContainer>
-                <RestaurantFilterOptions />
+                <RestaurantFilterOptionsLayer>
+                    <RestaurantFilterOptions />
+                </RestaurantFilterOptionsLayer>
             </RestaurantFilterOptionsContainer>
             <RestaurantListContainer>
                 <RestaurantList>

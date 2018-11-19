@@ -1,6 +1,28 @@
 import React from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { FilterButton } from '../styles';
 import { toggleRestaurantFilter } from '../../actions/restaurant_actions';
+
+const FilterButtonList = styled.ul`
+    display: flex;
+`;
+
+const FilterButtonPrice = styled(FilterButton)`
+    border-radius: 0;
+
+    &:first-child {
+        border-radius: 4px 0 0 4px;
+    }
+
+    &:last-child {
+        border-radius: 0 4px 4px 0;
+    }
+
+    &:not(:first-child) {
+        margin-left: -1px;
+    }
+`;
 
 const mapStateToProps = state => {
     return {
@@ -14,38 +36,43 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-const SortOptions = ({ restaurantFilterOptions, toggleRestaurantFilter}) => {
-    const handleChange = (orderBy, order) => (
-        e => {
-            toggleRestaurantFilter(Object.assign(
-                {},
-                restaurantFilterOptions,
-                {orderBy, order}
-            ));
-        }
-    );
-
-    const radio = ["price", "rating"].map((orderBy, idx) => (
-        <li key={idx}>
-            <span className="sort-titles">
-                {`sort by ${orderBy}:`}
-            </span>
-            {["low to high", "high to low"].map((order, idx2) => (
-                <label key={idx2}>{order}
-                    <input
-                        value={order}
-                        onChange={handleChange(orderBy, order)}
-                        type="radio"
-                        name="sort" />
-                </label>
-            ))}
-        </li>
+const RestaurantFilterOptions = ({ restaurantFilterOptions, toggleRestaurantFilter }) => {
+    const priceOptions = ["$", "$$", "$$$", "$$$$"].map((price, idx) => (
+        <FilterButtonPrice
+            selected={ restaurantFilterOptions.price === price }
+            key={ idx }
+            onClick={ () => {
+                if (restaurantFilterOptions.price === price) {
+                    toggleRestaurantFilter({ price: "" });
+                } else {
+                    toggleRestaurantFilter({ price });
+                }
+            }}><span>{ price }</span></FilterButtonPrice>
     ));
+
+    const otherOptions = ["Open Now", "Order Delivery", "Order Takeout", "Make a Reservation"].map((option, idx) => (
+        <FilterButton 
+            marginOn
+            selected={ restaurantFilterOptions[option] }
+            key={ idx }
+            onClick={ () => {
+                toggleRestaurantFilter({
+                    [option]: !restaurantFilterOptions[option]
+                });
+            }}><span>{ option }</span></FilterButton>
+    ));
+    
     return (
-        <ul className="sort-options">
-            {radio}
-        </ul>
+        <FilterButtonList>
+            <li>
+                <FilterButtonList>
+                    { priceOptions }
+                </FilterButtonList>
+            </li>
+            { otherOptions }
+        </FilterButtonList>
+
     );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SortOptions);
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantFilterOptions);
