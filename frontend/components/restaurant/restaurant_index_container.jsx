@@ -3,9 +3,24 @@ import { fetchRestaurants } from '../../actions/restaurant_actions';
 import RestaurantIndex from './restaurant_index';
 
 const mapStateToProps = state => {
-    const { orderBy, order } = state.ui.restaurantFilterOptions;
-    const restaurants = state.entities.restaurants.slice();
-    // will filter the array first when more filter options are added
+    const { 
+        orderBy,
+        order,
+        price,
+        "Open Now": isClosed,
+        "Make a Reservation": restaurantReservation,
+        "Order Takeout": pickup,
+        "Order Delivery": delivery
+    } = state.ui.restaurantFilterOptions;
+
+    const restaurants = state.entities.restaurants.filter(restaurant => (
+        (!price || price === restaurant.price) &&
+        (!isClosed || !restaurant.is_closed) &&
+        (!restaurantReservation || restaurant.transactions.includes("restaurant_reservation")) &&
+        (!pickup || restaurant.transactions.includes("pickup")) &&
+        (!delivery || restaurant.transactions.includes("delivery"))
+    ));
+
     if (order === "low to high") {
         restaurants.sort((a, b) => {
             if (a[orderBy] === undefined && b[orderBy] === undefined) {
@@ -41,9 +56,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-        fetchRestaurants: (city, offset) => dispatch(fetchRestaurants(city, offset))
-    };
+    return { fetchRestaurants: (location, term) => dispatch(fetchRestaurants(location, term)) };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestaurantIndex);
