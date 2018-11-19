@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Button, Label } from '../styles';
 import { fetchRestaurants } from '../../actions/restaurant_actions';
+import UserButton from '../users/user_button';
 
 const Span = styled.span`
     margin-right: 10px;
@@ -41,8 +42,14 @@ const RestaurantTopNavBar = styled.nav`
     align-items: center;
 `;
 
-const RestaurantTopNavBarForm = styled.form`
+const RestaurantNavContainer = styled.div`
     min-width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const RestaurantSearchForm = styled.form`
     display: flex;
     justify-content: center;
     align-items: center; 
@@ -79,27 +86,31 @@ class RestaurantSearchPageNav extends React.Component {
     render() {
         return (
             <RestaurantTopNavBar>
-                <RestaurantTopNavBarForm onSubmit={this.handleSubmit}>
-                    <Label>
-                        <Span>Find</Span>
-                        <Input
-                            type="text"
-                            placeholder="chinese, lunch, ramen"
-                            onChange={this.update("term")} />
-                    </Label>
-                    <LabelRight>
-                        <Span>Near</Span>
-                        <Input
-                            type="text"
-                            placeholder="location"
-                            onChange={this.update("location")} />
-                    </LabelRight>
-                    <SearchButton>
-                        <svg viewBox="0 0 24 24" width="20px">
-                            <path d="M20.753 19.34l-4.295-4.297A7.46 7.46 0 0 0 18 10.5a7.5 7.5 0 1 0-7.5 7.5 7.46 7.46 0 0 0 4.543-1.542l4.296 4.295a1 1 0 1 0 1.412-1.414zM10.5 16A5.506 5.506 0 0 1 5 10.5C5 7.467 7.467 5 10.5 5S16 7.467 16 10.5 13.533 16 10.5 16z"/>
-                        </svg>
-                    </SearchButton>
-                </RestaurantTopNavBarForm>
+                <RestaurantNavContainer>
+                    <RestaurantSearchForm onSubmit={this.handleSubmit}>
+                        <Label>
+                            <Span>Find</Span>
+                            <Input
+                                type="text"
+                                placeholder="chinese, lunch, ramen"
+                                onChange={this.update("term")} />
+                        </Label>
+                        <LabelRight>
+                            <Span>Near</Span>
+                            <Input
+                                type="text"
+                                placeholder="location"
+                                onChange={this.update("location")} />
+                        </LabelRight>
+                        <SearchButton>
+                            <svg viewBox="0 0 24 24" width="20px">
+                                <path d="M20.753 19.34l-4.295-4.297A7.46 7.46 0 0 0 18 10.5a7.5 7.5 0 1 0-7.5 7.5 7.46 7.46 0 0 0 4.543-1.542l4.296 4.295a1 1 0 1 0 1.412-1.414zM10.5 16A5.506 5.506 0 0 1 5 10.5C5 7.467 7.467 5 10.5 5S16 7.467 16 10.5 13.533 16 10.5 16z"/>
+                            </svg>
+                        </SearchButton>
+                    </RestaurantSearchForm>
+                    <UserButton buttonText={"login"} />
+                    <UserButton buttonText={"signup"} />
+                </RestaurantNavContainer>
             </RestaurantTopNavBar>
         );
     }

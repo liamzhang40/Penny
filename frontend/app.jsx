@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
-import { DjangoFetchRestaurants } from './utils/yelp_api_util';
+import { fetchLoginPage } from './utils/user_api_utils';
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");
@@ -13,4 +13,4 @@ document.addEventListener("DOMContentLoaded", () => {
     window.dispatch = store.dispatch;
 });
 
-window.DjangoFetchRestaurants = DjangoFetchRestaurants;
+window.fetchLoginPage = fetchLoginPage;
