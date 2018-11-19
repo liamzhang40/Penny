@@ -21,6 +21,16 @@ export const Img = styled.img`
     height: 100%;
 `;
 
+export const UserATag = styled.a`
+    background-color: ${props => props.buttonColor};
+    color: ${props => props.buttonTextColor};
+    border: ${props => props.border};
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 700;
+`;
+
 export const FilterButton = styled.li`
     cursor: pointer;
     display: flex;

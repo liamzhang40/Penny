@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Button, Label } from '../styles';
 import { fetchRestaurants } from '../../actions/restaurant_actions';
-import UserButton from '../users/user_button';
+import { UserATag } from "../styles";
 
 const Span = styled.span`
     margin-right: 10px;
@@ -55,6 +55,18 @@ const RestaurantSearchForm = styled.form`
     align-items: center; 
 `;
 
+const UserATagLogIn = styled(UserATag)`
+    margin-left: 20px;
+
+    &:hover {
+        background-color: #a71c1c;
+    }
+`;
+
+const UserATagSignUp = styled(UserATag)`
+    margin-left: 5px;
+`;
+
 const mapDispatchToProps = dispatch => {
     return {
         fetchRestaurants: (location, offset) => dispatch(fetchRestaurants(location, offset))
@@ -84,35 +96,31 @@ class RestaurantSearchPageNav extends React.Component {
     }
 
     render() {
-        return (
-            <RestaurantTopNavBar>
-                <RestaurantNavContainer>
-                    <RestaurantSearchForm onSubmit={this.handleSubmit}>
-                        <Label>
-                            <Span>Find</Span>
-                            <Input
-                                type="text"
-                                placeholder="chinese, lunch, ramen"
-                                onChange={this.update("term")} />
-                        </Label>
-                        <LabelRight>
-                            <Span>Near</Span>
-                            <Input
-                                type="text"
-                                placeholder="location"
-                                onChange={this.update("location")} />
-                        </LabelRight>
-                        <SearchButton>
-                            <svg viewBox="0 0 24 24" width="20px">
-                                <path d="M20.753 19.34l-4.295-4.297A7.46 7.46 0 0 0 18 10.5a7.5 7.5 0 1 0-7.5 7.5 7.46 7.46 0 0 0 4.543-1.542l4.296 4.295a1 1 0 1 0 1.412-1.414zM10.5 16A5.506 5.506 0 0 1 5 10.5C5 7.467 7.467 5 10.5 5S16 7.467 16 10.5 13.533 16 10.5 16z"/>
-                            </svg>
-                        </SearchButton>
-                    </RestaurantSearchForm>
-                    <UserButton buttonText={"login"} />
-                    <UserButton buttonText={"signup"} />
-                </RestaurantNavContainer>
-            </RestaurantTopNavBar>
-        );
+        return <RestaurantTopNavBar>
+            <RestaurantNavContainer>
+              <RestaurantSearchForm onSubmit={this.handleSubmit}>
+                <Label>
+                  <Span>Find</Span>
+                  <Input type="text" placeholder="chinese, lunch, ramen" onChange={this.update("term")} />
+                </Label>
+                <LabelRight>
+                  <Span>Near</Span>
+                  <Input type="text" placeholder="location" onChange={this.update("location")} />
+                </LabelRight>
+                <SearchButton>
+                  <svg viewBox="0 0 24 24" width="20px">
+                    <path d="M20.753 19.34l-4.295-4.297A7.46 7.46 0 0 0 18 10.5a7.5 7.5 0 1 0-7.5 7.5 7.46 7.46 0 0 0 4.543-1.542l4.296 4.295a1 1 0 1 0 1.412-1.414zM10.5 16A5.506 5.506 0 0 1 5 10.5C5 7.467 7.467 5 10.5 5S16 7.467 16 10.5 13.533 16 10.5 16z" />
+                  </svg>
+                </SearchButton>
+              </RestaurantSearchForm>
+              <UserATagLogIn href="login/" buttonColor="#d32323" buttonTextColor="#fff" border="1px solid #bd1f1f">
+                Log In
+              </UserATagLogIn>
+              <UserATagSignUp href="signup" buttonColor="#f5f5f5" buttonTextColor="#000" border="1px solid #f5f5f5">
+                Sign Up
+              </UserATagSignUp>
+            </RestaurantNavContainer>
+          </RestaurantTopNavBar>;
     }
 }
 
