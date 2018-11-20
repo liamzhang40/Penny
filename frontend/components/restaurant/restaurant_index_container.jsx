@@ -56,7 +56,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-    return { fetchRestaurants: (location, term) => dispatch(fetchRestaurants(location, term)) };
+    return { fetchRestaurants: (location, term, limit) => dispatch(fetchRestaurants(location, term, limit)) };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestaurantIndex);

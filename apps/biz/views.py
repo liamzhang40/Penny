@@ -36,24 +36,38 @@ BUSINESS_PATH = '/v3/businesses/'  # Business ID will come after slash.
 
 class YelpAPISearch(APIView):
     def get(self, request):
-        self.location = request.GET.get('location')
+        if "location" in request.GET:
+            self.location = request.GET.get('location')
+        else:
+            self.latitude = request.GET.get('latitude')
+            self.longitude = request.GET.get('longitude')
         self.term = request.GET.get('term')
         self.limit = request.GET.get('limit')
         
         return self.__biz_request_to_yelp()
 
     def __biz_request_to_yelp(self):
-        url_params = { 
-            'term': self.term.replace(' ', '+'),
-            'location': self.location.replace(' ', '+'),
-            'limit': self.limit
-        }
+        try:
+            url_params = { 
+                'term': self.term.replace(' ', '+'),
+                'location': self.location.replace(' ', '+'),
+                'limit': self.limit
+            }
+        except AttributeError:
+            url_params = {
+                'term': self.term.replace(' ', '+'),
+                'latitude': self.latitude.replace(' ', '+'),
+                'longitude': self.longitude.replace(' ', '+'),
+                'limit': self.limit
+            }
+
+        # pdb.set_trace()
         url = '{0}{1}'.format(API_HOST, quote(SEARCH_PATH.encode('utf8')))
         headers = {
             'Authorization': 'Bearer %s' % settings.YELP_API_KEY,
         }
 
-        print(u'Querying {0} ...'.format(url))
+        print(u'Querying {0} ...'.format(url), self.limit, "restaurants")
         response = requests.request('GET', url, headers=headers, params=url_params)
         # pdb.set_trace()
         return HttpResponse(
