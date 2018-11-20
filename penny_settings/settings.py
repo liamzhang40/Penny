@@ -26,7 +26,7 @@ SECRET_KEY = '&s7i4m22((+4c4biwzl#(_eet+i31t7#l7cm7j#9a*9390xa#+'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'penny.us-west-2.elasticbeanstalk.com',
+    'penny-env.tcfucmp8pt.us-west-2.elasticbeanstalk.com',
     'localhost',
     '127.0.0.1'
     ]
