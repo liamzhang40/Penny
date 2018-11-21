@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
-import { fetchRestaurants } from './utils/restaurant_api_utils';
+import { fetchRestaurants } from './actions/restaurant_actions';
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");

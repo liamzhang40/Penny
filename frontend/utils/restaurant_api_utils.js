@@ -24,16 +24,16 @@ export const fetchRestaurants = (location, term, limit = 20) => {
             url: "biz/api/yelp/v1/"
         })
     } else {
-        return navigator.geolocation.getCurrentPosition(position => {
-            const {
-                latitude,
-                longitude
-            } = position.coords;
+        // return navigator.geolocation.getCurrentPosition(position => {
+        //     const {
+        //         latitude,
+        //         longitude
+        //     } = position.coords;
 
             return $.ajax({
                 data: {
-                    latitude,
-                    longitude,
+                    latitude: "40.759496999999996",
+                    longitude: "-73.8322901",
                     term,
                     limit
                 },
@@ -41,6 +41,6 @@ export const fetchRestaurants = (location, term, limit = 20) => {
                 dataType: "json",
                 url: "biz/api/yelp/v1/"
             })
-        })
+        // })
     }
 };
