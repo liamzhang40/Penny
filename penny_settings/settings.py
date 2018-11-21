@@ -26,7 +26,7 @@ SECRET_KEY = '&s7i4m22((+4c4biwzl#(_eet+i31t7#l7cm7j#9a*9390xa#+'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'penny-env.tcfucmp8pt.us-west-2.elasticbeanstalk.com',
+    'penny-demo.us-west-2.elasticbeanstalk.com',
     'localhost',
     '127.0.0.1'
     ]
@@ -34,7 +34,6 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-	'apps.users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -42,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	'apps.users.apps.UsersConfig',
 
 	# 3rd-party apps
     'webpack_loader',
@@ -146,7 +146,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR),
+    # os.path.join(BASE_DIR),
+    os.path.join(BASE_DIR, 'static', 'bundles'),
 )
 # webpack 
 
