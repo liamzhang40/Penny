@@ -1,5 +1,5 @@
 # Penny
-[Live for now](http://penny.us-west-2.elasticbeanstalk.com)
+[Live for now](http://penny-demo.us-west-2.elasticbeanstalk.com)
 
 ### git
 
