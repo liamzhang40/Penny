@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { toggleRestaurantPage } from '../../actions/restaurant_actions'
 
 const PageNumbers = styled.ul`
     display: flex;
@@ -26,39 +28,36 @@ const SelectedPage = styled.li`
     font-size: 13px;
 `;
 
-class RestaurantIndexPageNumbers extends React.Component {
-    constructor() {
-        super();
+const mapStateToProps = state => {
+    return {
+        selectedPage: state.ui.restaurantPage
+    }
+}
 
-        this.state = {
-            selectedPage: "1"
+const mapDispatchToProps = dispatch => {
+    return {
+        toggleRestaurantPage: page => dispatch(toggleRestaurantPage(page))
+    }
+}
+
+const RestaurantIndexPageNumbers = ({selectedPage, toggleRestaurantPage}) => {
+    const handleClick = (page) => {
+        return () => {
+            toggleRestaurantPage(page);
         }
-
-        this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(e) {
-        // this.setState((prevState, nextProps) => (
-        //     {SelectedPage: e.currentTarget.content}
-        // ))
-        // debugger
-        this.setState({selectedPage: e.target.innerText})
-    }
+    const pages = new Array(9).fill(undefined).map((el, page) => (
+        selectedPage === page + 1 ?
+        <SelectedPage key={page}>{page + 1}</SelectedPage> :
+        <Page key={page} onClick={handleClick(page + 1)}>{page + 1}</Page>
+    ))
 
-    render() {
-        const pages = new Array(9).fill(undefined).map((el, page) => (
-            this.state.selectedPage === String(page + 1) ?
-            <SelectedPage key={page}>{page + 1}</SelectedPage> :
-            <Page key={page}>{page + 1}</Page>
-        ))
-    
-        return (
-            <PageNumbers onClick={this.handleClick}>
-                {pages}
-            </PageNumbers>
-        );
+    return (
+        <PageNumbers>
+            {pages}
+        </PageNumbers>
+    );
+}
 
-    }
-};
-
-export default RestaurantIndexPageNumbers;
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantIndexPageNumbers);
