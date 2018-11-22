@@ -25,5 +25,6 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
 	path('biz/', include('apps.biz.urls')),
+	path('api/v1/rest-auth/', include('rest_auth.urls')),
 ] 
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

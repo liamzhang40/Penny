@@ -46,6 +46,8 @@ INSTALLED_APPS = [
 	# 3rd-party apps
     'webpack_loader',
     'rest_framework',
+	'rest_framework.authtoken',
+	'rest_auth',
 
 	# Local apps 
 	'apps.biz', 
@@ -163,8 +165,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
 	'DEFAULT_AUTHENTICATION_CLASSES': [
+		'rest_framework.authentication.TokenAuthentication',
 		'rest_framework.authentication.SessionAuthentication',
-		'rest_framework.authentication.BasicAuthentication',
 	],
 }
 
