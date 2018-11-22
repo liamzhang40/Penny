@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { toggleRestaurantPage } from '../../actions/restaurant_actions'
 
 const PageNumbers = styled.ul`
     display: flex;
@@ -26,35 +28,36 @@ const SelectedPage = styled.li`
     font-size: 13px;
 `;
 
-class RestaurantIndexPageNumbers extends React.Component {
-    constructor() {
-        super();
-
-        this.state = {
-            selectedPage: 1
-        }
+const mapStateToProps = state => {
+    return {
+        selectedPage: state.ui.restaurantPageNumber
     }
+}
 
-    handleClick(page) {
+const mapDispatchToProps = dispatch => {
+    return {
+        toggleRestaurantPage: page => dispatch(toggleRestaurantPage(page))
+    }
+}
+
+const RestaurantIndexPageNumbers = ({selectedPage, toggleRestaurantPage}) => {
+    const handleClick = (page) => {
         return () => {
-            this.setState({selectedPage: page});
+            toggleRestaurantPage(page);
         }
     }
 
-    render() {
-        const pages = new Array(9).fill(undefined).map((el, page) => (
-            this.state.selectedPage === page + 1 ?
-            <SelectedPage key={page}>{page + 1}</SelectedPage> :
-            <Page key={page} onClick={this.handleClick(page + 1)}>{page + 1}</Page>
-        ))
-    
-        return (
-            <PageNumbers>
-                {pages}
-            </PageNumbers>
-        );
+    const pages = new Array(9).fill(undefined).map((el, page) => (
+        selectedPage === page + 1 ?
+        <SelectedPage key={page}>{page + 1}</SelectedPage> :
+        <Page key={page} onClick={handleClick(page + 1)}>{page + 1}</Page>
+    ))
 
-    }
-};
+    return (
+        <PageNumbers>
+            {pages}
+        </PageNumbers>
+    );
+}
 
-export default RestaurantIndexPageNumbers;
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantIndexPageNumbers);
