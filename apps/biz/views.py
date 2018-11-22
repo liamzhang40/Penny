@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse 
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework.views import APIView 
 from rest_framework.response import Response
 from penny_settings import settings
@@ -35,6 +35,8 @@ SEARCH_PATH = '/v3/businesses/search'
 BUSINESS_PATH = '/v3/businesses/'  # Business ID will come after slash.
 
 class YelpAPISearch(APIView):
+    permission_classes = (permissions.AllowAny,)
+
     def get(self, request):
         if "location" in request.GET:
             self.location = request.GET.get('location')

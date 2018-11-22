@@ -31,29 +31,25 @@ class RestaurantIndexPageNumbers extends React.Component {
         super();
 
         this.state = {
-            selectedPage: "1"
+            selectedPage: 1
         }
-
-        this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(e) {
-        // this.setState((prevState, nextProps) => (
-        //     {SelectedPage: e.currentTarget.content}
-        // ))
-        // debugger
-        this.setState({selectedPage: e.target.innerText})
+    handleClick(page) {
+        return () => {
+            this.setState({selectedPage: page});
+        }
     }
 
     render() {
         const pages = new Array(9).fill(undefined).map((el, page) => (
-            this.state.selectedPage === String(page + 1) ?
+            this.state.selectedPage === page + 1 ?
             <SelectedPage key={page}>{page + 1}</SelectedPage> :
-            <Page key={page}>{page + 1}</Page>
+            <Page key={page} onClick={this.handleClick(page + 1)}>{page + 1}</Page>
         ))
     
         return (
-            <PageNumbers onClick={this.handleClick}>
+            <PageNumbers>
                 {pages}
             </PageNumbers>
         );
