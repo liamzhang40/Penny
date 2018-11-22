@@ -9,7 +9,15 @@ class RestaurantIndex extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchRestaurants(null , "restaurant", 50);
+        // location needs to be fetched here first
+        navigator.geolocation.getCurrentPosition(position => {
+            const {
+                latitude,
+                longitude
+            } = position.coords;
+
+            this.props.fetchRestaurants({latitude, longitude} , "restaurant", 50);
+        })
     }
 
     componentWillReceiveProps(nextProps, nextState) {

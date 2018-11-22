@@ -18,7 +18,6 @@ export const toggleRestaurantFilter = (filterObj) => (
 
 export const fetchRestaurants = (location, term, limit) => {
   return dispatch => {
-      debugger
       return restaurantAPIUtils.fetchRestaurants(location, term, limit).then(
           response => {
               return dispatch(receiveRestaurants(response.businesses));

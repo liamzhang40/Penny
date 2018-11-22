@@ -12,7 +12,7 @@ import $ from 'jquery';
 // );
 
 export const fetchRestaurants = (location, term, limit = 20) => {
-    if (location) {
+    if (typeof location === "string") {
         return $.ajax({
             data: {
                 location,
@@ -24,23 +24,17 @@ export const fetchRestaurants = (location, term, limit = 20) => {
             url: "biz/api/yelp/v1/"
         })
     } else {
-        // return navigator.geolocation.getCurrentPosition(position => {
-        //     const {
-        //         latitude,
-        //         longitude
-        //     } = position.coords;
-
-            return $.ajax({
-                data: {
-                    latitude: "40.759496999999996",
-                    longitude: "-73.8322901",
-                    term,
-                    limit
-                },
-                method: "GET",
-                dataType: "json",
-                url: "biz/api/yelp/v1/"
-            })
-        // })
+        const { latitude, longitude } = location;
+        return $.ajax({
+            data: {
+                latitude,
+                longitude,
+                term,
+                limit
+            },
+            method: "GET",
+            dataType: "json",
+            url: "biz/api/yelp/v1/"
+        })
     }
 };
