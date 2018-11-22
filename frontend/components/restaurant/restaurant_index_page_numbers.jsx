@@ -30,7 +30,7 @@ const SelectedPage = styled.li`
 
 const mapStateToProps = state => {
     return {
-        selectedPage: state.ui.restaurantPageNumber
+        selectedPage: state.ui.restaurantPage
     }
 }
 

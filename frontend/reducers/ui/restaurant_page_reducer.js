@@ -2,7 +2,7 @@ import {
     TOGGLE_RESTAURANTS_PAGE
 } from '../../actions/restaurant_actions';
 
-const restaurantPageNumberReducer = (state = 1, action) => {
+const restaurantPageReducer = (state = 1, action) => {
     Object.freeze(state);
 
     switch (action.type) {
@@ -13,4 +13,4 @@ const restaurantPageNumberReducer = (state = 1, action) => {
     }
 };
 
-export default restaurantPageNumberReducer;
+export default restaurantPageReducer;
