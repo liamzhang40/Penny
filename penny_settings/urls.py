@@ -16,8 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from rest_framework.documentation import include_docs_urls
+from rest_framework.schemas import get_schema_view
+
 # from django.conf.urls.static import static
 # from . import settings
+schema_view = get_schema_view(title='Penny, Mocked YELP')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +30,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
 	path('biz/', include('apps.biz.urls')),
 	path('api/v1/rest-auth/', include('rest_auth.urls')),
+	path('docs/', include_docs_urls(title='Penny, Mocked YELP')),
+	path('schema/', schema_view),
 ] 
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
