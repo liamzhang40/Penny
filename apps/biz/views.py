@@ -35,18 +35,6 @@ SEARCH_PATH = '/v3/businesses/search'
 BUSINESS_PATH = '/v3/businesses/'  # Business ID will come after slash.
 
 class YelpAPISearch(APIView):
-<<<<<<< HEAD
-	permission_classes = (permissions.AllowAny,)
-
-	def get(self, request):
-		if "location" in request.GET:
-			self.location = request.GET.get('location')
-		else:
-			self.latitude = request.GET.get('latitude')
-			self.longitude = request.GET.get('longitude')
-		self.term = request.GET.get('term')
-		self.limit = request.GET.get('limit')
-=======
     permission_classes = (permissions.AllowAny,)
 
     def get(self, request):
@@ -57,9 +45,6 @@ class YelpAPISearch(APIView):
             self.longitude = request.GET.get('longitude')
         self.term = request.GET.get('term')
         self.limit = request.GET.get('limit')
-        
-        return self.__biz_request_to_yelp()
->>>>>>> b5f199be67988229698e676e61bec811788c1cef
 
 		return self.__biz_request_to_yelp()
 
