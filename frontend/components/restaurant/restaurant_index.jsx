@@ -2,12 +2,6 @@ import React from 'react';
 import RestaurantIndexItem from './restaurant_index_item';
 
 class RestaurantIndex extends React.Component {
-    constructor() {
-        super();
-
-        this.offset = 0;
-    }
-
     componentDidMount() {
         // location needs to be fetched here first
         navigator.geolocation.getCurrentPosition(position => {
