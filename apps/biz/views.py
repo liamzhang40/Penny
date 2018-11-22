@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse 
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework.views import APIView 
 from rest_framework.response import Response
 from penny_settings import settings
-from .models import BusinessSearch, DecimalEncoder
+from .models import BusinessSearch
 from .serializers import SearchSerializer
 
 import argparse
@@ -35,42 +35,43 @@ SEARCH_PATH = '/v3/businesses/search'
 BUSINESS_PATH = '/v3/businesses/'  # Business ID will come after slash.
 
 class YelpAPISearch(APIView):
-    def get(self, request):
-        if "location" in request.GET:
-            self.location = request.GET.get('location')
-        else:
-            self.latitude = request.GET.get('latitude')
-            self.longitude = request.GET.get('longitude')
-        self.term = request.GET.get('term')
-        self.limit = request.GET.get('limit')
-        
-        return self.__biz_request_to_yelp()
+	permission_classes = (permissions.AllowAny,)
+	def get(self, request):
+		if "location" in request.GET:
+			self.location = request.GET.get('location')
+		else:
+			self.latitude = request.GET.get('latitude')
+			self.longitude = request.GET.get('longitude')
+		self.term = request.GET.get('term')
+		self.limit = request.GET.get('limit')
 
-    def __biz_request_to_yelp(self):
-        try:
-            url_params = { 
+		return self.__biz_request_to_yelp()
+
+	def __biz_request_to_yelp(self):
+		try:
+			url_params = { 
                 'term': self.term.replace(' ', '+'),
                 'location': self.location.replace(' ', '+'),
                 'limit': self.limit
             }
-        except AttributeError:
-            url_params = {
-                'term': self.term.replace(' ', '+'),
+		except AttributeError:
+			url_params = {
+				'term': self.term.replace(' ', '+'),
                 'latitude': self.latitude.replace(' ', '+'),
                 'longitude': self.longitude.replace(' ', '+'),
                 'limit': self.limit
             }
 
         # pdb.set_trace()
-        url = '{0}{1}'.format(API_HOST, quote(SEARCH_PATH.encode('utf8')))
-        headers = {
-            'Authorization': 'Bearer %s' % settings.YELP_API_KEY,
+		url = '{0}{1}'.format(API_HOST, quote(SEARCH_PATH.encode('utf8')))
+		headers = {
+			'Authorization': 'Bearer %s' % settings.YELP_API_KEY,
         }
-
-        print(u'Querying {0} ...'.format(url), self.limit, "restaurants")
-        response = requests.request('GET', url, headers=headers, params=url_params)
+		
+		print(u'Querying {0} ...'.format(url), self.limit, "restaurants")
+		response = requests.request('GET', url, headers=headers, params=url_params)
         # pdb.set_trace()
-        return HttpResponse(
+		return HttpResponse(
             content=response.content,
             status=response.status_code,
             content_type=response.headers['Content-Type']

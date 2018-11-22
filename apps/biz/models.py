@@ -5,22 +5,6 @@ from penny_settings import settings
 from django.views.generic import View 
 from django.http import HttpResponse 
 
-import argparse
-import json
-import decimal 
-import pprint
-import requests
-import sys
-import urllib
-
-from urllib.error import HTTPError
-from urllib.parse import quote
-from urllib.parse import urlencode
-
-DEFAULT_TERM = 'dinner'
-DEFAULT_LOCATION = 'San Francisco, CA'
-SEARCH_LIMIT = 50
-
 
 class BusinessSearch(models.Model):
 	author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -33,10 +17,3 @@ class BusinessSearch(models.Model):
 	
 	def __str__(self):
 		return self.term
-
-
-class DecimalEncoder(json.JSONEncoder):
-	def default(self, obj):
-		if isInstance(obj, decimal.Decimal):
-			return str(obj)
-		return json.JSONEncoder.default(self, obj)

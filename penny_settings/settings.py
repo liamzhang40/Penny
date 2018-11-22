@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'rest_framework',
 	'rest_framework.authtoken',
+	'rest_framework_swagger',
 	'rest_auth',
 
 	# Local apps 

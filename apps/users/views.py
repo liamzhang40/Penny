@@ -25,7 +25,7 @@ def login_success(request):
 		return redirect("/")
 
 def logout_success(request):
-	if ('HTTP_REFERER' in request.META and request.META['HTTP_REFERER'] == 'http://127.0.0.1:8000/admin/'):
+	if ('HTTP_REFERER' in request.META and request.META['HTTP_REFERER'][-6:] == 'admin/'):
 		return redirect("/admin/")
 	else:
 		return redirect("/login/")
