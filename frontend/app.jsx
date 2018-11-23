@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
-import { fetchRestaurants } from './actions/restaurant_actions';
+import { logout } from './utils/session_api_utils';
 
 document.addEventListener("DOMContentLoaded", () => {
     let store;
@@ -25,4 +25,4 @@ document.addEventListener("DOMContentLoaded", () => {
     window.dispatch = store.dispatch;
 });
 
-window.fetchRestaurants = fetchRestaurants;
+window.logout = logout;

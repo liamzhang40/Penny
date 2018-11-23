@@ -2,11 +2,13 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from .forms import CustomUserCreationForm
-from django.contrib.auth import logout
 
 from rest_framework import generics
 from .models import CustomUser
 from .serializers import CustomUserSerializer
+
+import pdb
+
 
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
@@ -17,7 +19,8 @@ class SignUpView(CreateView):
 #     queryset = CustomUser.objects.all()
 #     serializer_class = CustomUserSerializer
 
-def logout(request):
-    logout(request)
-    # should return empty object only but also delete 
+# def logout(request):
+#     pdb.set_trace()
+#     logout(request)
+    # should return empty object only blut also delete 
 	# session token from cookie
