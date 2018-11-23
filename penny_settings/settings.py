@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
 	'rest_framework.authtoken',
 	'rest_framework_swagger',
-	'rest_auth',
+	# 'rest_auth',
 
 	# Local apps 
 	'apps.biz', 
@@ -173,8 +173,8 @@ REST_FRAMEWORK = {
 
 AUTH_USER_MODEL = 'users.CustomUser'
 SITE_ID=1
-LOGIN_REDIRECT_URL = 'login_success'
-LOGOUT_REDIRECT_URL = 'logout_success'
+LOGIN_REDIRECT_URL = '/'
+# LOGOUT_REDIRECT_URL = 'logout_success'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 

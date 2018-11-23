@@ -1,6 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { UserATag } from "../styles";
+
+const mapStateToProps = state => {
+    return {
+        loggedIn: state.session.id
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        
+    }
+};
 
 const UserATagLogIn = styled(UserATag)`
     margin-left: 20px;
@@ -27,4 +40,4 @@ const Greeting = () => {
     );
 }
 
-export default Greeting;
+export default connect(mapStateToProps, mapDispatchToProps)(Greeting);

@@ -13,19 +13,11 @@ class SignUpView(CreateView):
     success_url = reverse_lazy('index')
     template_name = 'signup.html'
 
-class UsersAPIView(generics.ListAPIView):
-    queryset = CustomUser.objects.all()
-    serializer_class = CustomUserSerializer
-   
-def login_success(request):
-	if request.user.is_superuser:
-		logout(request)
-		return redirect("/login/")
-	else:
-		return redirect("/")
+# class UsersAPIView(generics.ListAPIView):
+#     queryset = CustomUser.objects.all()
+#     serializer_class = CustomUserSerializer
 
-def logout_success(request):
-	if ('HTTP_REFERER' in request.META and request.META['HTTP_REFERER'][-6:] == 'admin/'):
-		return redirect("/admin/")
-	else:
-		return redirect("/login/")
+def logout(request):
+    logout(request)
+    # should return empty object only but also delete 
+	# session token from cookie

@@ -21,7 +21,7 @@ export const fetchRestaurants = (location, term, limit = 20) => {
             },
             method: "GET",
             dataType: "json",
-            url: "biz/api/yelp/v1/"
+            url: "api/biz/yelp/v1/"
         })
     } else {
         const { latitude, longitude } = location;
@@ -34,7 +34,7 @@ export const fetchRestaurants = (location, term, limit = 20) => {
             },
             method: "GET",
             dataType: "json",
-            url: "biz/api/yelp/v1/"
+            url: "api/biz/yelp/v1/"
         })
     }
 };
