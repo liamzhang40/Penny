@@ -45,18 +45,17 @@ class YelpAPISearch(APIView):
             self.longitude = request.GET.get('longitude')
         self.term = request.GET.get('term')
         self.limit = request.GET.get('limit')
-
-		return self.__biz_request_to_yelp()
-
-	def __biz_request_to_yelp(self):
-		try:
-			url_params = { 
+        return self.__biz_request_to_yelp()
+    
+    def __biz_request_to_yelp(self):
+        try:
+            url_params = { 
                 'term': self.term.replace(' ', '+'),
                 'location': self.location.replace(' ', '+'),
                 'limit': self.limit
             }
-		except AttributeError:
-			url_params = {
+        except AttributeError:
+            url_params = {
 				'term': self.term.replace(' ', '+'),
                 'latitude': self.latitude.replace(' ', '+'),
                 'longitude': self.longitude.replace(' ', '+'),
@@ -64,15 +63,15 @@ class YelpAPISearch(APIView):
             }
 
         # pdb.set_trace()
-		url = '{0}{1}'.format(API_HOST, quote(SEARCH_PATH.encode('utf8')))
-		headers = {
+        url = '{0}{1}'.format(API_HOST, quote(SEARCH_PATH.encode('utf8')))
+        headers = {
 			'Authorization': 'Bearer %s' % settings.YELP_API_KEY,
         }
 		
-		print(u'Querying {0} ...'.format(url), self.limit, "restaurants")
-		response = requests.request('GET', url, headers=headers, params=url_params)
+        print(u'Querying {0} ...'.format(url), self.limit, "restaurants")
+        response = requests.request('GET', url, headers=headers, params=url_params)
         # pdb.set_trace()
-		return HttpResponse(
+        return HttpResponse(
             content=response.content,
             status=response.status_code,
             content_type=response.headers['Content-Type']
