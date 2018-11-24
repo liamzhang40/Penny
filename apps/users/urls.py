@@ -1,9 +1,8 @@
 from django.urls import path
-from django.contrib.auth import logout
-from .views import SignUpView
+from .views import SignUpView, user_logout
 
 urlpatterns = [
     path('signup/', SignUpView.as_view(), name='signup'),
     # path('api/users/v1/', UsersAPIView.as_view()),
-    path('logout/', logout),
+    path('logout/', user_logout),
 ]
