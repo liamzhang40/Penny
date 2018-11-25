@@ -30,19 +30,19 @@ const UserATagSignUp = styled(UserATag)`
 
 const Greeting = ({loggedIn, logout}) => {
     return (
-        <React.Fragment>
+        <div>
             {loggedIn ? 
-                <button onClick={() => logout()}>logout</button> :
-                <React.Fragment>
+            <button onClick={() => logout()}>logout</button> :
+            <React.Fragment>
                 <UserATagLogIn href="login/" buttonColor="#d32323" buttonTextColor="#fff" border="1px solid #bd1f1f">
                     Log In
-                    </UserATagLogIn>
+                </UserATagLogIn>
                 <UserATagSignUp href="signup" buttonColor="#f5f5f5" buttonTextColor="#000" border="1px solid #f5f5f5">
                     Sign Up
-                    </UserATagSignUp>
-                    </React.Fragment>
+                </UserATagSignUp>
+            </React.Fragment>
             }
-        </React.Fragment>
+        </div>
     );
 }
 
