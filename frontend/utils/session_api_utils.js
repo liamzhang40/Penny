@@ -10,12 +10,13 @@ const getCookie = cname => {
     return null;
 };
 
-export const logout = () => (
-    $.ajax({
+export const logout = () => {
+    // debugger
+    return $.ajax({
         method: "DELETE",
         url: "logout",
         headers: {
             'X-CSRFToken': getCookie("csrftoken")
         }
     })
-)
+}

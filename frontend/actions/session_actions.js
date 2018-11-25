@@ -10,6 +10,7 @@ export const deleteSession = () => (
 
 export const logout = () => {
     return dispatch => {
+        console.log("invoked")
         return sessionAPIUtils.logout().then(
             () => {
                 return dispatch(deleteSession());
