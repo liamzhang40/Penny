@@ -67,12 +67,19 @@ class YelpAPISearch(APIView):
         headers = {
 			'Authorization': 'Bearer %s' % settings.YELP_API_KEY,
         }
-		
-        print(u'Querying {0} ...'.format(url), self.limit, "restaurants")
+        
         response = requests.request('GET', url, headers=headers, params=url_params)
-        # pdb.set_trace()
+        response_content = json.loads(response.content)
+        # first yelp restaurant fetch
+        for offset in range(50, 200, 50):
+            url_params["offset"] = offset
+
+            print(u'Querying {0} ...'.format(url), offset, "restaurants")
+            response = requests.request('GET', url, headers=headers, params=url_params)
+            response_content.get("businesses").extend(json.loads(response.content).get("businesses"))
+            
         return HttpResponse(
-            content=response.content,
+            content=json.dumps(response_content),
             status=response.status_code,
             content_type=response.headers['Content-Type']
         )
