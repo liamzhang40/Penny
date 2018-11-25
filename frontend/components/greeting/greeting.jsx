@@ -1,9 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { UserATag } from '../styles';
+import { Button, UserATag } from '../styles';
 import DropdownButton from '../button/dropdown_button';
 import UserOptionDropdown from '../greeting/user_option_dropdown';
+
+const GreetingContainer = styled.div`
+    width: 180px;
+`;
 
 const UserATagLogIn = styled(UserATag)`
     margin-left: 20px;
@@ -17,8 +21,14 @@ const UserATagSignUp = styled(UserATag)`
     margin-left: 5px;
 `;
 
+const DropdownButtonStyled = styled(Button)`
+    height: 35px;
+    margin-left: 20px;
+`;
+
 const Svg = styled.svg`
     width: 14px;
+    fill: #fff;
 `;
 
 const mapStateToProps = state => {
@@ -29,11 +39,11 @@ const mapStateToProps = state => {
 
 const Greeting = ({loggedIn}) => {
     return (
-        <div>
+        <GreetingContainer>
             {loggedIn ? 
             <DropdownButton 
-                type="user" 
-                buttonContent={() => <Svg viewBox="0 0 14 14"><path d="M7 9L3.5 5h7L7 9z" /></Svg>}
+                insideClickOn={true}
+                buttonContent={() => <DropdownButtonStyled><Svg viewBox="0 0 14 14"><path d="M7 9L3.5 5h7L7 9z" /></Svg></DropdownButtonStyled>}
                 dropdownContent={() => <UserOptionDropdown />} /> :
             <React.Fragment>
                 <UserATagLogIn href="login/" buttonColor="#d32323" buttonTextColor="#fff" border="1px solid #bd1f1f">
@@ -44,7 +54,7 @@ const Greeting = ({loggedIn}) => {
                 </UserATagSignUp>
             </React.Fragment>
             }
-        </div>
+        </GreetingContainer>
     );
 }
 

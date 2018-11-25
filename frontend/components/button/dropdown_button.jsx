@@ -1,4 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const ButtonContainer = styled.div`
+    position: relative;
+    display: inline-block;
+`;
 
 class DropdownButton extends React.Component {
     constructor(props) {
@@ -25,18 +31,15 @@ class DropdownButton extends React.Component {
     render() {
         const { type, buttonContent, dropdownContent } = this.props;
         return (
-            <div
-                className={`${type}-option-button`}
+            <ButtonContainer
                 onClick={this.handleClick}>
                 {buttonContent()}
                 <div ref={node => { this.node = node; }}>
                     {this.state.visible &&
-                        <div className={`${type}-option-dropdown-visible`}>
-                            {dropdownContent()}
-                        </div>
+                        dropdownContent()
                     }
                 </div>
-            </div>
+            </ButtonContainer>
         );
     }
 }
