@@ -24,8 +24,7 @@ Log In
                {% endif %}
                maxlength="{{ form.username.field.max_length }}"
                required/>
-        {{ form.username.errors }}
-        
+        {{ form.username.errors }}    
     </div>
 
     <div data-validate="Enter password">
@@ -66,6 +65,10 @@ Log In
         Sign Up
     </a>
 </div>
+
+<form>
+    <input type="button" value="Go back!" onclick="history.back()">
+</form>
 
 <style type="text/css">
     
