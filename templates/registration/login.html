@@ -1,15 +1,77 @@
 <!-- templates/registration/login.html -->
 {% extends 'base.html' %}
-{% block title %}Log In{% endblock title %}
+{% load widget_tweaks %}
+
+{% block title %}
+Log In
+{% endblock title %}
+
 {% block content %}
 <h2>Log In</h2>
 <form method="post">
+    <span>
+        Welcome
+    </span>
     {% csrf_token %}
-    {{ form.as_p }}
+
+    <div data-validate="Enter username">
+        <input type="text" 
+               name="{{ form.username.name }}"
+               id="{{ form.username.id_for_label }}"
+               placeholder="Username"
+               {% if form.username.value != None %} 
+                value="{{ form.username.value|stringformat:'s' }}" 
+               {% endif %}
+               maxlength="{{ form.username.field.max_length }}"
+               required/>
+        {{ form.username.errors }}    
+    </div>
+
+    <div data-validate="Enter password">
+        <input type="password"
+               name="{{ form.password.name }}"
+               placeholder="Password"
+               {% if form.password.value != None %} 
+                value="{{ form.password.value|stringformat:'s' }}" 
+               {% endif %}
+               maxlength="{{ form.password.field.max_length }}"
+               required />
+        {{ form.password.errors }}
+    </div>
+
+    {% if form.errors %}
+        <p>username or password is not correct!</p>
+    {% endif %}
+
     <button type="submit">Log In</button>
 </form>
 
-<a href="{% url 'signup' %}">
-    <button>Sign Up</button>
-</a>
+<div>
+    <span>
+        forget password?
+    </span>
+
+    <a href="">
+        Click Here!
+    </a>
+</div>
+
+<div>
+    <span>
+        Don't have an account?
+    </span>
+
+    <a href="{% url 'signup' %}">
+        Sign Up
+    </a>
+</div>
+
+<form>
+    <input type="button" value="Go back!" onclick="history.back()">
+</form>
+
+<style type="text/css">
+    
+</style>
+
 {% endblock content %}

@@ -1,17 +1,98 @@
 <!-- templates/signup.html -->
 {% extends 'base.html' %}
-{% block title %}Sign Up{% endblock title %}
+
+{% block title %}
+Sign Up
+{% endblock title %}
+
 {% block content %}
-<h2>Sign Up</h2>
+<span>Sign Up</span>
+
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign Up</button>
+    <div data-validate="Enter Full Name">
+        <input type="text"
+               name="{{ form.first_name.name }}"
+               id="{{ form.first_name.id_for_label }}"
+               placeholder="First Name"
+               {% if form.first_name.value is not None %}
+               value="{{ form.first_name.value|stringformat:'s' }}"
+               {% endif %}
+               maxlength="{{ form.first_name.field.max_length }}"
+               required />
+
+        <input type="text"
+               name="{{ form.last_name.name }}"
+               id="{{ form.last_name.id_for_label }}"
+               placeholder="Last Name"
+               {% if form.last_name.value is not None %}
+               value="{{ form.last_name.value|stringformat:'s' }}"
+               {% endif %}
+               maxlength="{{ form.last_name.field.max_length }}"
+               required />
+        {{ form.first_name.errors }}
+    </div>
+
+    <div data-validate="Enter Username"></div>
+    <input type="text"
+           name="{{ form.username.name }}"
+           id="{{ form.usernmae.id_for_label }}"
+           placeholder="Username"
+           {% if form.username.value is not None %}
+           value="{{ form.username.value|stringformat:'s' }}"
+           {% endif %}
+           maxlength="{{ form.username.field.max_length }}"
+           required />
+    {{ form.username.errors }}
+    </div>
+
+    <div data-validate="Enter Username"></div>
+    <input type="text"
+           name="{{ form.username.name }}"
+           id="{{ form.usernmae.id_for_label }}"
+           placeholder="Username"
+           {% if form.username.value is not None %}
+           value="{{ form.username.value|stringformat:'s' }}"
+           {% endif %}
+           maxlength="{{ form.username.field.max_length }}"
+           required />
+    {{ form.username.errors }}
+    </div>
+
+    <div data-validate="Enter Email"></div>
+    <input type="text"
+           name="{{ form.email.name }}"
+           id="{{ form.email.id_for_label }}"
+           placeholder="Email"
+           {% if form.email.value is not None %}
+           value="{{ form.email.value|stringformat:'s' }}"
+           {% endif %}
+           maxlength="{{ form.email.field.max_length }}"
+           required />
+    {{ form.email.errors }}
+    </div>
+
+    <div data-validate="Enter Password Confirmation"></div>
+    <input type="text"
+           name="{{ form.username.name }}"
+           id="{{ form.usernmae.id_for_label }}"
+           placeholder="Username"
+           {% if form.username.value is not None %}
+           value="{{ form.username.value|stringformat:'s' }}"
+           {% endif %}
+           maxlength="{{ form.username.field.max_length }}"
+           required />
+    {{ form.username.errors }}
+    </div>
+
+    <div>
+        <button type="submit">Sign Up</button>
+    </div>
 
 </form>
 
 <a href="{% url 'login' %}">
-    <button>Log In</button> 
+    <button>Log In</button>
 </a>
 
 {% endblock content %}
