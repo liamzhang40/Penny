@@ -47,15 +47,11 @@ const mapDispatchToProps = dispatch => {
 };
 
 const UserOptionDropdown = ({ logout }) => {
-    const handleLogOut = () => {
-        logout();
-    };
-
     return (
         <DropdownContainer>
             <DropdownArrow></DropdownArrow>
             <DropdownPaddingLayer>
-                <DropdownOption onMouseDown={handleLogOut}>Log Out</DropdownOption>
+                <DropdownOption onMouseDown={() => logout()}>Log Out</DropdownOption>
             </DropdownPaddingLayer>
         </DropdownContainer>
     );

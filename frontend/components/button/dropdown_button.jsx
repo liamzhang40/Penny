@@ -28,8 +28,12 @@ class DropdownButton extends React.Component {
         this.setState({ visible: !this.state.visible });
     }
 
+    componentWillUnmount() {
+        document.removeEventListener('click', this.handleClick, false);
+    }
+
     render() {
-        const { type, buttonContent, dropdownContent } = this.props;
+        const { buttonContent, dropdownContent } = this.props;
         return (
             <ButtonContainer
                 onClick={this.handleClick}>
