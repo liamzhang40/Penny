@@ -5,11 +5,11 @@ from .models import CustomUser
 class CustomUserCreationForm(UserCreationForm):
 	class Meta(UserCreationForm.Meta):
 		model = CustomUser
-		fields = UserCreationForm.Meta.fields + ('first_name', 'last_name', 'age',)
-		fields = ('first_name', 'last_name', 'username', 'email', 'age',)
+		fields = UserCreationForm.Meta.fields + ('firstname', 'lastname', 'age',)
+		#ields = ('firstname', 'lastname', 'username', 'email', 'age',)
 		labels = {
-			'first_name': 'First Name',
-			'last_name': 'Last Name',
+			'firstname': 'First Name',
+			'lastname': 'Last Name',
 		}
 
 class CustomUserChangeForm(UserChangeForm):
