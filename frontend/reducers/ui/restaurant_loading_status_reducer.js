@@ -2,7 +2,7 @@ import {
     TOGGLE_RESTAURANTS_LOADING_STATUS
 } from '../../actions/restaurant_actions';
 
-const restaurantLoadingStatusReducer = (state = false, action) => {
+const restaurantLoadingStatusReducer = (state = true, action) => {
     Object.freeze(state);
 
     switch (action.type) {

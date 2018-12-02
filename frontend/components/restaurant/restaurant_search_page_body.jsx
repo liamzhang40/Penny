@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import RestaurantIndexContainer from './restaurant_index_container';
 import RestaurantFilterOptions from './restaurant_filter_options';
 import RestaurantIndexPageNumber from './restaurant_index_page_numbers';
+import RestaurantSearchPageLoadingCover from './restaurant_search_page_loading_cover';
 
 const RestaurantBodyBackground = styled.div`
+    position: relative;
     min-width: 1020px;
 `;
 
@@ -36,25 +38,26 @@ const mapStateToProps = state => {
 }
 
 const RestaurantSearchPageBody = ({status}) => {
-    return status ?
-        (
-            <div></div>
-        ) :
-        (
-            <RestaurantBodyBackground>
-                <RestaurantFilterOptionsContainer>
-                    <RestaurantFilterOptionsLayer>
-                        <RestaurantFilterOptions />
-                    </RestaurantFilterOptionsLayer>
-                </RestaurantFilterOptionsContainer>
-                <RestaurantListContainer>
-                    <RestaurantList>
-                        <RestaurantIndexContainer />
-                    </RestaurantList>
-                    <RestaurantIndexPageNumber />
-                </RestaurantListContainer>
-            </RestaurantBodyBackground>
-        );
+    return (
+        <RestaurantBodyBackground>
+            {
+                status && <RestaurantSearchPageLoadingCover />
+            }
+            <RestaurantFilterOptionsContainer>
+                <RestaurantFilterOptionsLayer>
+                    <RestaurantFilterOptions />
+                </RestaurantFilterOptionsLayer>
+            </RestaurantFilterOptionsContainer>
+            <RestaurantListContainer>
+                <RestaurantList>
+                    <RestaurantIndexContainer />
+                </RestaurantList>
+                {
+                    !status && <RestaurantIndexPageNumber />
+                }
+            </RestaurantListContainer>
+        </RestaurantBodyBackground>
+    );
 }
 
 export default connect(mapStateToProps)(RestaurantSearchPageBody);
