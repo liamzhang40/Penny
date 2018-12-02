@@ -13,6 +13,8 @@ const mapStateToProps = state => {
         "Order Delivery": delivery
     } = state.ui.restaurantFilterOptions;
 
+    const page = state.ui.restaurantPage;
+
     const restaurants = state.entities.restaurants.filter(restaurant => (
         (!price || price === restaurant.price) &&
         (!isClosed || !restaurant.is_closed) &&
@@ -50,13 +52,14 @@ const mapStateToProps = state => {
             }
         });
     }
+    
     return {
-        restaurants
+        restaurants: restaurants.slice((page - 1) * 20, page * 20)
     };
 };
 
 const mapDispatchToProps = dispatch => {
-    return { fetchRestaurants: (location, term) => dispatch(fetchRestaurants(location, term)) };
+    return { fetchRestaurants: (location, term, limit) => dispatch(fetchRestaurants(location, term, limit)) };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestaurantIndex);

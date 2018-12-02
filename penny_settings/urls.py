@@ -16,14 +16,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from rest_framework.documentation import include_docs_urls
+from rest_framework.schemas import get_schema_view
+from rest_framework_swagger.views import get_swagger_view
+
 # from django.conf.urls.static import static
 # from . import settings
 
+API_TITLE = 'Penny, the Mocked YELP'
+API_DESCRIPTION = 'A Web API for searching restuarants'
+schema_view = get_swagger_view(title=API_TITLE)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+	path('docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
+	path('swagger-docs/', schema_view),
+	#path('schema/', schema_view),
+
+    path('', TemplateView.as_view(template_name='index.html'), name='index'),
     path('', include('apps.users.urls')),
     path('', include('django.contrib.auth.urls')),
-    path('', TemplateView.as_view(template_name='index.html'), name='index'),
-	path('biz/', include('apps.biz.urls')),
+	path('api/biz/', include('apps.biz.urls')),
 ] 
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

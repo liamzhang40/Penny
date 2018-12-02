@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import RestaurantIndexContainer from './restaurant_index_container';
 import RestaurantFilterOptions from './restaurant_filter_options';
+import RestaurantIndexPageNumber from './restaurant_index_page_numbers';
 
 const RestaurantBodyBackground = styled.div`
     min-width: 1020px;
@@ -39,6 +40,7 @@ const RestaurantSearchPageBody = () => {
                 <RestaurantList>
                     <RestaurantIndexContainer />
                 </RestaurantList>
+                <RestaurantIndexPageNumber />
             </RestaurantListContainer>
         </RestaurantBodyBackground>
     );

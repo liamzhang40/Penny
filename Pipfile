@@ -71,6 +71,10 @@ Pygments = "==2.2.0"
 PyYAML = "==3.13"
 semantic_version = "==2.5.0"
 "Send2Trash" = "==1.5.0"
+django-rest-auth = "==0.9.3"
+coreapi = "==2.3.3"
+django-rest-swagger = "==2.2.0"
+django-widget-tweaks = "*"
 
 [dev-packages]
 

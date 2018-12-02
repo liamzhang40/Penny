@@ -12,6 +12,25 @@
 <body>
     <div id="root">
     </div>
+    {% if user.is_authenticated %}
+    
+    <script type="text/javascript">
+        window.currentUser = {
+            id: "{{ user.id }}",
+            username: "{{ user }}",
+            lastname: "{{ user.last_name }}",
+            firstname: "{{ user.first_name }}",
+            email: "{{ user.email }}",
+            permissions: "{{ user.user_permissions }}",
+            lastLogin: "{{ user.last_login }}",
+            isActive: "{{ user.is_active }}",
+            isStaff: "{{ user.is_staff }}",
+            isSuperuser: "{{ user.is_superuser }}",
+            dateJoined: "{{ user.date_joined }}",
+        };
+    </script>
+    
+    {% endif %}
 </body>
 
 </html>

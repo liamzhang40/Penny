@@ -46,6 +46,10 @@ INSTALLED_APPS = [
 	# 3rd-party apps
     'webpack_loader',
     'rest_framework',
+	'rest_framework.authtoken',
+	'rest_framework_swagger',
+	'widget_tweaks',
+	# 'rest_auth',
 
 	# Local apps 
 	'apps.biz', 
@@ -160,14 +164,18 @@ WEBPACK_LOADER = {
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-    ]
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+	'DEFAULT_AUTHENTICATION_CLASSES': [
+		'rest_framework.authentication.TokenAuthentication',
+		'rest_framework.authentication.SessionAuthentication',
+	],
 }
 
 AUTH_USER_MODEL = 'users.CustomUser'
 SITE_ID=1
-LOGIN_REDIRECT_URL = 'login_success'
-LOGOUT_REDIRECT_URL = 'logout_success'
+LOGIN_REDIRECT_URL = '/'
+# LOGOUT_REDIRECT_URL = 'logout_success'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
