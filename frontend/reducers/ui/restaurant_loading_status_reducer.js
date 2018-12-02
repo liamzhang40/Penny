@@ -11,6 +11,6 @@ const restaurantLoadingStatusReducer = (state = true, action) => {
         default:
             return state;
     }
-}
+};
 
 export default restaurantLoadingStatusReducer;
