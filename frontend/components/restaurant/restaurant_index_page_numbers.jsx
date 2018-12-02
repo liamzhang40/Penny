@@ -43,7 +43,7 @@ const mapStateToProps = state => {
     const totalRestaurants = state.entities.restaurants.length;
 
     return {
-        selectedPage: state.ui.restaurantPage,
+        selectedPage: state.ui.restaurantPageNumber,
         totalRestaurants
     }
 }

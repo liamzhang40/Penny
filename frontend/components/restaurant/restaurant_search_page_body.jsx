@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import RestaurantIndexContainer from './restaurant_index_container';
 import RestaurantFilterOptions from './restaurant_filter_options';
@@ -28,22 +29,32 @@ const RestaurantFilterOptionsContainer = styled.div`
     border-bottom: 1px solid #e6e6e6;
 `;
 
-const RestaurantSearchPageBody = () => {
-    return (
-        <RestaurantBodyBackground>
-            <RestaurantFilterOptionsContainer>
-                <RestaurantFilterOptionsLayer>
-                    <RestaurantFilterOptions />
-                </RestaurantFilterOptionsLayer>
-            </RestaurantFilterOptionsContainer>
-            <RestaurantListContainer>
-                <RestaurantList>
-                    <RestaurantIndexContainer />
-                </RestaurantList>
-                <RestaurantIndexPageNumber />
-            </RestaurantListContainer>
-        </RestaurantBodyBackground>
-    );
+const mapStateToProps = state => {
+    return {
+        status: state.ui.restaurantLoadingStatus
+    }
 }
 
-export default RestaurantSearchPageBody;
+const RestaurantSearchPageBody = ({status}) => {
+    return status ?
+        (
+            <div></div>
+        ) :
+        (
+            <RestaurantBodyBackground>
+                <RestaurantFilterOptionsContainer>
+                    <RestaurantFilterOptionsLayer>
+                        <RestaurantFilterOptions />
+                    </RestaurantFilterOptionsLayer>
+                </RestaurantFilterOptionsContainer>
+                <RestaurantListContainer>
+                    <RestaurantList>
+                        <RestaurantIndexContainer />
+                    </RestaurantList>
+                    <RestaurantIndexPageNumber />
+                </RestaurantListContainer>
+            </RestaurantBodyBackground>
+        );
+}
+
+export default connect(mapStateToProps)(RestaurantSearchPageBody);
