@@ -13,7 +13,7 @@ const mapStateToProps = state => {
         "Order Delivery": delivery
     } = state.ui.restaurantFilterOptions;
 
-    const page = state.ui.restaurantPage;
+    const page = state.ui.restaurantPageNumber;
 
     const restaurants = state.entities.restaurants.filter(restaurant => (
         (!price || price === restaurant.price) &&
@@ -54,7 +54,8 @@ const mapStateToProps = state => {
     }
     
     return {
-        restaurants: restaurants.slice((page - 1) * 20, page * 20)
+        restaurants: restaurants.slice((page - 1) * 20, page * 20),
+        page
     };
 };
 

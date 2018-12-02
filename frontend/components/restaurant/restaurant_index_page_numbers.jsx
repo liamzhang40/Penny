@@ -3,10 +3,15 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { toggleRestaurantPage } from '../../actions/restaurant_actions'
 
-const PageNumbers = styled.ul`
+const PageNumbers = styled.div`
     display: flex;
+    justify-content: space-between;
     width: 630px;
     border-bottom: 1px solid #e6e6e6;
+`;
+
+const PageSelector = styled.div`
+    display: flex;
 `;
 
 const Page = styled.li`
@@ -28,9 +33,18 @@ const SelectedPage = styled.li`
     font-size: 13px;
 `;
 
+const CurrentPage = styled.div`
+    color: black;
+    padding: 12px 6px 9px;
+    font-size: 13px;
+`;
+
 const mapStateToProps = state => {
+    const totalRestaurants = state.entities.restaurants.length;
+
     return {
-        selectedPage: state.ui.restaurantPage
+        selectedPage: state.ui.restaurantPageNumber,
+        totalRestaurants
     }
 }
 
@@ -40,22 +54,51 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const RestaurantIndexPageNumbers = ({selectedPage, toggleRestaurantPage}) => {
+const RestaurantIndexPageNumbers = ({selectedPage, totalRestaurants, toggleRestaurantPage}) => {
     const handleClick = (page) => {
         return () => {
             toggleRestaurantPage(page);
         }
     }
 
-    const pages = new Array(9).fill(undefined).map((el, page) => (
-        selectedPage === page + 1 ?
-        <SelectedPage key={page}>{page + 1}</SelectedPage> :
-        <Page key={page} onClick={handleClick(page + 1)}>{page + 1}</Page>
+    const pageNumbers = [];
+    const numberOfPageNumbers = 9;
+    const totalPages = Math.ceil(totalRestaurants / 20);
+
+    if (selectedPage < numberOfPageNumbers / 2) {
+        for (let i = 1; pageNumbers.length < numberOfPageNumbers && pageNumbers.length < totalPages; i++) {
+            pageNumbers.push(i);
+        }
+    } else if (selectedPage <= Math.ceil(totalPages - numberOfPageNumbers / 2)) {
+        for (let i = Math.ceil(selectedPage - numberOfPageNumbers / 2); pageNumbers.length < numberOfPageNumbers; i++) {
+            pageNumbers.push(i);
+        }
+    } else {
+        for (let i = totalPages - numberOfPageNumbers + 1; pageNumbers.length < numberOfPageNumbers; i++) {
+            pageNumbers.push(i);
+        }
+    }
+
+    const pages = pageNumbers.map(pageNumber => (
+        selectedPage === pageNumber ?
+        <SelectedPage key={pageNumber}>{pageNumber}</SelectedPage> :
+        <Page key={pageNumber} onClick={handleClick(pageNumber)}>{pageNumber}</Page>
     ))
 
     return (
         <PageNumbers>
-            {pages}
+            <CurrentPage>{`Page ${selectedPage} of ${totalPages}`}</CurrentPage>
+            <PageSelector>
+                {
+                    selectedPage !== 1 &&
+                    <Page onClick={handleClick(selectedPage - 1)}>{"< Previous"}</Page>
+                }
+                {pages}
+                {
+                    selectedPage !== totalPages &&
+                    <Page onClick={handleClick(selectedPage + 1)}>{"Next >"}</Page>
+                }
+            </PageSelector>
         </PageNumbers>
     );
 }

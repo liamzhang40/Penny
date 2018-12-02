@@ -1,5 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { toggleRestaurantLoadingStatus } from '../../actions/restaurant_actions'
 import RestaurantIndexItem from './restaurant_index_item';
+
+const mapDispatchToProps = dispatch => {
+    return {
+        toggleRestaurantLoadingStatus: () => dispatch(toggleRestaurantLoadingStatus())
+    }
+}
 
 class RestaurantIndex extends React.Component {
     componentDidMount() {
@@ -9,17 +17,20 @@ class RestaurantIndex extends React.Component {
                 latitude,
                 longitude
             } = position.coords;
-
-            this.props.fetchRestaurants({latitude, longitude} , "restaurant", 50);
+            
+            this.props.fetchRestaurants({latitude, longitude} , "restaurant", 50).then(() =>{
+                this.props.toggleRestaurantLoadingStatus();
+            });
         })
     }
 
     render() {
-        const { restaurants } = this.props;
+        const { restaurants, page } = this.props;
 
         const list = restaurants.map((restaurant, idx) => (
             <RestaurantIndexItem 
                 key={idx} 
+                restaurantNumber={(page - 1) * 20 + idx + 1}
                 restaurant={restaurant}/>
         ))
 
@@ -35,4 +46,4 @@ RestaurantIndex.defaultProps = {
     restaurants: []
 }
 
-export default RestaurantIndex;
+export default connect(null, mapDispatchToProps)(RestaurantIndex);
