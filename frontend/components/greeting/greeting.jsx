@@ -34,8 +34,8 @@ const Svg = styled.svg`
 const mapStateToProps = state => {
     return {
         loggedIn: state.session.id
-    }
-}
+    };
+};
 
 const Greeting = ({loggedIn}) => {
     return (
@@ -56,6 +56,6 @@ const Greeting = ({loggedIn}) => {
             }
         </GreetingContainer>
     );
-}
+};
 
 export default connect(mapStateToProps)(Greeting);

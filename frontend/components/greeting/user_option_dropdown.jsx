@@ -43,18 +43,22 @@ const DropdownOption = styled.button`
 const mapDispatchToProps = dispatch => {
     return {
         logout: () => dispatch(logout())
-    }
+    };
 };
 
 const UserOptionDropdown = ({ logout }) => {
+    const handleLogOut = () => {
+        logout();
+    };
+
     return (
         <DropdownContainer>
             <DropdownArrow></DropdownArrow>
             <DropdownPaddingLayer>
-                <DropdownOption onMouseDown={() => logout()}>Log Out</DropdownOption>
+                <DropdownOption onMouseDown={handleLogOut}>Log Out</DropdownOption>
             </DropdownPaddingLayer>
         </DropdownContainer>
-    )
-}
+    );
+};
 
 export default connect(null, mapDispatchToProps)(UserOptionDropdown);

@@ -6,15 +6,14 @@ export const deleteSession = () => (
     {
         type: LOGOUT_CURRENT_USER
     }
-)
+);
 
 export const logout = () => {
     return dispatch => {
-        console.log("invoked")
         return sessionAPIUtils.logout().then(
             () => {
                 return dispatch(deleteSession());
             }
-        )
+        );
     };
 };

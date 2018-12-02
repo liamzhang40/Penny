@@ -6,8 +6,8 @@ import RestaurantIndexItem from './restaurant_index_item';
 const mapDispatchToProps = dispatch => {
     return {
         toggleRestaurantLoadingStatus: () => dispatch(toggleRestaurantLoadingStatus())
-    }
-}
+    };
+};
 
 class RestaurantIndex extends React.Component {
     componentDidMount() {
@@ -21,7 +21,7 @@ class RestaurantIndex extends React.Component {
             this.props.fetchRestaurants({latitude, longitude} , "restaurant", 50).then(() =>{
                 this.props.toggleRestaurantLoadingStatus();
             });
-        })
+        });
     }
 
     render() {
