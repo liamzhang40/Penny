@@ -54,7 +54,8 @@ const mapStateToProps = state => {
     }
     
     return {
-        restaurants: restaurants.slice((page - 1) * 20, page * 20)
+        restaurants: restaurants.slice((page - 1) * 20, page * 20),
+        page
     };
 };
 

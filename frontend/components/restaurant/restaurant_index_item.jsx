@@ -62,7 +62,7 @@ const RestaurantDescription = styled.p`
 
 `;
 
-const RestaurantIndexItem = ({ restaurant }) => {
+const RestaurantIndexItem = ({ restaurant, restaurantNumber }) => {
     const restaurantCategories = restaurant.categories.map((category,idx) => (
         <RestaurantContactSpan key={idx}>
             {idx === restaurant.categories.length - 1 ?
@@ -81,7 +81,10 @@ const RestaurantIndexItem = ({ restaurant }) => {
             <div>
                 <RestaurantContactContainer>
                     <RestaurantContactLeft>
-                        <RestaurantName href={restaurant.url} target="_blank">{restaurant.name}</RestaurantName>
+                        <div>
+                            <span>{`${restaurantNumber}. `}</span>
+                            <RestaurantName href={restaurant.url} target="_blank">{restaurant.name}</RestaurantName>
+                        </div>
                         <RestaurantContactSpanRate>rating: {restaurant.rating}</RestaurantContactSpanRate>
                         <div>
                             <RestaurantContactSpan>{restaurant.price}</RestaurantContactSpan>

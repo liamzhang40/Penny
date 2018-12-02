@@ -15,11 +15,12 @@ class RestaurantIndex extends React.Component {
     }
 
     render() {
-        const { restaurants } = this.props;
+        const { restaurants, page } = this.props;
 
         const list = restaurants.map((restaurant, idx) => (
             <RestaurantIndexItem 
                 key={idx} 
+                restaurantNumber={(page - 1) * 20 + idx + 1}
                 restaurant={restaurant}/>
         ))
 
