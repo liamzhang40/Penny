@@ -34,7 +34,7 @@ API_HOST = 'https://api.yelp.com'
 SEARCH_PATH = '/v3/businesses/search'
 BUSINESS_PATH = '/v3/businesses/'  # Business ID will come after slash.
 
-class YelpAPISearch(APIView):
+class YelpAPIBusinessSearch(APIView):
     permission_classes = (permissions.AllowAny,)
 
     def get(self, request):
@@ -83,6 +83,10 @@ class YelpAPISearch(APIView):
             status=response.status_code,
             content_type=response.headers['Content-Type']
         )
+
+class YelpAPIAutoComplete(APIView):
+    def get(self, request):
+        return HttpResponse
 
 # Create your views here.
 class SearchList(generics.ListCreateAPIView):
