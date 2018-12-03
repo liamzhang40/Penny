@@ -10,10 +10,28 @@ export const Button = styled.button`
 `;
 
 export const Label = styled.label`
+    position: relative;
     font-size: 14px;
     background-color: #fff;
     padding: 8px 12px;
-    border-radius: 4px 0 0 4px;
+
+    ${({ labelContent }) => {
+        switch (labelContent) {
+            case "Find":
+                return `border-radius: 4px 0 0 4px`;
+            case "Near":
+                return `
+                    &: before {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        width: 1px;
+                        height: 18px;
+                        background-color: #ccc;
+                    }
+                `;
+        }
+    }}
 `;
 
 export const Img = styled.img`

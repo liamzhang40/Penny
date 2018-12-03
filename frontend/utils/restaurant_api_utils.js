@@ -22,7 +22,7 @@ export const fetchRestaurants = (location, term, limit = 20) => {
             method: "GET",
             dataType: "json",
             url: "api/biz/yelp/v1/"
-        })
+        });
     } else {
         const { latitude, longitude } = location;
         return $.ajax({
@@ -35,6 +35,6 @@ export const fetchRestaurants = (location, term, limit = 20) => {
             method: "GET",
             dataType: "json",
             url: "api/biz/yelp/v1/"
-        })
+        });
     }
 };
