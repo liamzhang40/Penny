@@ -39,7 +39,7 @@
   "devDependencies": {
     "css-loader": "^1.0.1",
     "mini-css-extract-plugin": "^0.4.4",
-    "node-sass": "^4.10.0",
+    "node-sass": "^4.13.1",
     "redux-logger": "^3.0.6",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
